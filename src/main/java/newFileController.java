@@ -1,12 +1,12 @@
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableListBase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -25,10 +25,8 @@ public class newFileController {
 
     @FXML
     private TextField workDirectory;
-
     @FXML
     private TextField nameFile;
-
     @FXML
     private Button newFile;
     @FXML
@@ -39,18 +37,18 @@ public class newFileController {
     private CheckBox isSelectFile;
     @FXML
     private Button close;
-//    @FXML
-//    void textChange(InputMethodEvent event) {
-//        System.out.println(event.toString());
-//
-//    }
 
     @FXML
     void initialize() {
         workDirectory.setTooltip(new Tooltip("Директориия проекта"));
         nameFile.setTooltip(new Tooltip("Название файла"));
 
-        close.setOnAction(e -> stage.close());
+        newFile.setDisable(true);
+
+        close.setOnAction(e -> {
+            path = null;
+            stage.close();
+        });
 
         workDirectory.textProperty().addListener( (ov,oldV,newV) -> {
             Path path = Paths.get(workDirectory.getText());
@@ -66,18 +64,24 @@ public class newFileController {
 
         nameFile.textProperty().addListener((ov,oldV,newV) -> {
             File file = new File(workDirectory.getText() + newV.toString());
-            if (file.exists()) {
-                nameFile.setStyle("-fx-text-inner-color: red;");
-                newFile.setDisable(true);
-            } else {
+            Path path = Paths.get(workDirectory.getText());
+            if (!file.exists() && Files.exists(path)) {
                 nameFile.setStyle("-fx-text-inner-color: black;");
                 newFile.setDisable(false);
+            } else {
+                nameFile.setStyle("-fx-text-inner-color: red;");
+                newFile.setDisable(true);
             }
             nameFile.setTooltip(new Tooltip(!newFile.isDisable()? "Название файла" : "Такой файл уже существует"));
         });
 
         isSelectFile.setOnAction(e -> {
             selectFile.setDisable(isSelectFile.isSelected());
+        });
+
+        newFile.setOnAction(e -> {
+            path = workDirectory.getText() + nameFile.getText();
+            stage.close();
         });
     }
 

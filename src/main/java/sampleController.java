@@ -1,14 +1,16 @@
 import java.util.ResourceBundle;
+
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 public class sampleController {
-
-//    private Stage stage;
 
     @FXML
     private ResourceBundle resources;
@@ -33,33 +35,97 @@ public class sampleController {
     @FXML
     private CheckBox isFullScreen;
     @FXML
+    private AnchorPane workPane;
+    @FXML
+    private AnchorPane Main;
+    @FXML
+    private ComboBox<String> selectTyprOtchot;
+    @FXML
+    private ComboBox<String> selectTimes;
+    @FXML
+    private Button addOtchot;
+    @FXML
+    private AnchorPane otchot1;
+    @FXML
+    private AnchorPane tableEmpty;
+    @FXML
+    private AnchorPane otchot2;
+    @FXML
+    private AnchorPane otchot3;
+    @FXML
+    private AnchorPane otchot4;
+    @FXML
+    private TableColumn<String, String> godST_mount;
+    @FXML
+    private TableColumn<?, ?> godST_kol_voStudent;
+    @FXML
+    private TableColumn<?, ?> godST_summaZaMesaz;
+    @FXML
+    private TableColumn<?, ?> godST_SummaItogo;
+    @FXML
     void initialize() {
-//        Stage stage = (Stage) isFullScreen.getScene().getWindow();
+        ObservableList<String> mounts = FXCollections.observableArrayList("Январь", "Февраль", "Март", "Апрель",
+                                                                                "Май", "Июнь", "Июль", "Август",
+                                                                                "Сентябрь", "Октябрь", "Ноябрь", "Декабрь");
+        selectTimes.setItems(mounts);
 
-        exit.setOnAction(e -> {
-//            Stage stage = (Stage) isFullScreen.getScene().getWindow();
-//            stage.close();
-        });
+        otchot1.setVisible(false);
+        otchot2.setVisible(false);
+        otchot3.setVisible(false);
+        otchot4.setVisible(false);
+        tableEmpty.setVisible(true);
 
-//        toFullScreen.setOnAction(e-> {
-//            isFullScreen.setSelected(!isFullScreen.isSelected());
-//            Stage stage = (Stage) isFullScreen.getScene().getWindow();
-//            stage.setFullScreen(isFullScreen.isSelected());
-//        });
-
-        isFullScreen.setOnAction(e-> {
-//            Stage stage = (Stage) isFullScreen.getScene().get .getScene().getWindow();
-//            stage.setFullScreen(isFullScreen.isSelected());
-        });
+        ObservableList<String> typeOtchot = FXCollections.observableArrayList("?", "Годовая выплата стипендии", "Выплата стипендии за месяц", "Месячный отчет по фонду заработной платы");
+        selectTyprOtchot.setItems(typeOtchot);
 
         newFile.setOnAction(e -> {
             String pathToFile = newFileController.start();
-            System.out.println(pathToFile);
+            workPane.setVisible(pathToFile == null);
+        });
+
+        selectTyprOtchot.setOnAction(e -> {
+            switch (selectTyprOtchot.getValue()) {
+                case "?" :
+                    otchot1.setVisible(true);
+                    otchot2.setVisible(false);
+                    otchot3.setVisible(false);
+                    otchot4.setVisible(false);
+                    tableEmpty.setVisible(false);
+                    break;
+                case "Годовая выплата стипендии" :
+                    otchot1.setVisible(false);
+                    otchot2.setVisible(true);
+                    otchot3.setVisible(false);
+                    otchot4.setVisible(false);
+                    tableEmpty.setVisible(false);
+
+//                    godST_mount.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<String, String>, ObservableValue<String>>() {
+//                        @Override
+//                        public ObservableValue<String> call(TableColumn.CellDataFeatures<String, String> param) {
+//                            return null;
+//                        }
+//                    });
+//                    godST_mount.setText(new );
+                    break;
+                case "Выплата стипендии за месяц" :
+                    otchot1.setVisible(false);
+                    otchot2.setVisible(false);
+                    otchot3.setVisible(true);
+                    otchot4.setVisible(false);
+                    tableEmpty.setVisible(false);
+                    break;
+                case "Месячный отчет по фонду заработной платы" :
+                    otchot1.setVisible(false);
+                    otchot2.setVisible(false);
+                    otchot3.setVisible(false);
+                    otchot4.setVisible(true);
+                    tableEmpty.setVisible(false);
+                    break;
+            }
         });
 
         openFile.setOnAction(e -> {
             String pathToFile = openFileController.start();
-            System.out.println(pathToFile);
         });
 
     }

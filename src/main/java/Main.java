@@ -15,8 +15,8 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/sample.fxml"));
         primaryStage.setTitle("Welcome to SwingI");
         primaryStage.setScene(new Scene(root));
-//        primaryStage.setResizable(false);
-//        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.setMinHeight(650);
+        primaryStage.setMinWidth(850);
         primaryStage.show();
     }
 
