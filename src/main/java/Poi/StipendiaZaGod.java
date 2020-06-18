@@ -7,8 +7,18 @@ import lombok.Setter;
 @Getter
 public class StipendiaZaGod {
     String FIO;
-    String Mount;
-    String StatusStudent;
+    double manyForSentabr = 0;
+    double manyForOkt;
+    double manyForNoabr;
+    double manyForDekabr;
+    double manyForAnvar = 0;
+    double manyForFevral;
+    double manyForMart;
+    double manyForAprel;
+    double manyForMai;
+    double manyForiun;
+    double manyForiul;
+    double manyForaugust;
     double numberPP;
-    double manyForMounts;
+    String statusStudent;
 }
