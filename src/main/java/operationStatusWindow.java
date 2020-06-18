@@ -34,6 +34,8 @@ public class operationStatusWindow {
 
     }
 
+    void f() {}
+
     static void start(String error, String statusError) {
         try {
             stage = new Stage();

@@ -20,12 +20,8 @@
             <items>
               <MenuItem fx:id="newFile" mnemonicParsing="false" text="Создать" />
                   <MenuItem fx:id="openFile" mnemonicParsing="false" text="Открыть" />
-                  <MenuItem fx:id="saveFile" mnemonicParsing="false" text="Сохранить" />
-                  <MenuItem fx:id="exportFile" mnemonicParsing="false" text="Экспор" />
-                  <MenuItem fx:id="importFile" mnemonicParsing="false" text="Импорт" />
             </items>
           </Menu>
-          <Menu fx:id="mainPage" mnemonicParsing="false" text="Главная" />
             <Menu mnemonicParsing="false" text="Печать">
                <items>
                   <MenuItem mnemonicParsing="false" text="Delete" />
@@ -52,15 +48,6 @@
           </Menu>
         </menus>
       </MenuBar>
-      <AnchorPane fx:id="workPane" layoutX="1.0" layoutY="27.0" prefHeight="614.0" prefWidth="840.0" style="-fx-background-color: #696969;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="28.0">
-         <children>
-            <Label layoutX="107.0" layoutY="128.0" prefHeight="354.0" prefWidth="624.0" style="-fx-alignment: center;" text="Добро Пожаловать" AnchorPane.bottomAnchor="128.60000000000002" AnchorPane.leftAnchor="107.0" AnchorPane.rightAnchor="107.0" AnchorPane.topAnchor="128.0">
-               <font>
-                  <Font size="66.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
       <AnchorPane fx:id="Main" prefHeight="611.0" prefWidth="836.0" style="-fx-background-color: #696969;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="28.0">
          <children>
             <AnchorPane fx:id="tableEmpty" prefHeight="546.0" prefWidth="820.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="54.60000000000002">
@@ -169,6 +156,15 @@
                   </TableView>
                </children>
             </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="workPane" layoutX="1.0" layoutY="27.0" prefHeight="614.0" prefWidth="840.0" style="-fx-background-color: #696969;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="28.0">
+         <children>
+            <Label layoutX="107.0" layoutY="128.0" prefHeight="354.0" prefWidth="624.0" style="-fx-alignment: center;" text="Добро Пожаловать" AnchorPane.bottomAnchor="128.60000000000002" AnchorPane.leftAnchor="107.0" AnchorPane.rightAnchor="107.0" AnchorPane.topAnchor="128.0">
+               <font>
+                  <Font size="66.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

@@ -81,6 +81,10 @@ public class sampleController {
     @FXML
     private TableView<Stipendia_zaMesaz> stipMesaz;
 
+    String pathToNewFile = null;
+    String pathToOpenFile = null;
+    String pathToExelFile = null;
+
     @FXML
     void initialize() {
         ObservableList<String> mounts = FXCollections.observableArrayList("Январь", "Февраль", "Март", "Апрель",
@@ -98,8 +102,10 @@ public class sampleController {
         selectTyprOtchot.setItems(typeOtchot);
 
         newFile.setOnAction(e -> {
-            String pathToFile = newFileController.start();
-            workPane.setVisible(pathToFile == null);
+            String [] pathToFile = newFileController.start();
+            pathToNewFile = pathToFile[0];
+            pathToExelFile = pathToFile[1];
+            workPane.setVisible(pathToFile[0] == null);
         });
 
         selectTyprOtchot.setOnAction(e -> {
@@ -111,21 +117,6 @@ public class sampleController {
                     otchot4.setVisible(false);
                     tableEmpty.setVisible(false);
                     break;
-                case "Годовая выплата стипендииwew" :
-                    otchot1.setVisible(false);
-                    otchot2.setVisible(true);
-                    otchot3.setVisible(false);
-                    otchot4.setVisible(false);
-                    tableEmpty.setVisible(false);
-
-//                    godST_mount.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<String, String>, ObservableValue<String>>() {
-//                        @Override
-//                        public ObservableValue<String> call(TableColumn.CellDataFeatures<String, String> param) {
-//                            return null;
-//                        }
-//                    });
-//                    godST_mount.setText(new );
-                    break;
                 case "Годовая выплата стипендии" :
                     otchot1.setVisible(false);
                     otchot2.setVisible(false);
@@ -136,8 +127,8 @@ public class sampleController {
                     try {
                         ObservableList<Stipendia_zaMesaz> Stipendia_zaMesazData = FXCollections.observableArrayList();
 
-                        Poi_read poi_read = new Poi_read("d");
-                        ArrayList <Stipendia_zaMesaz> stipendia_zaMesaz = poi_read.readToStipZaGod("C:\\Users\\Admin\\Downloads\\Parus8.xls");
+                        Poi_read poi_read = new Poi_read(null);
+                        ArrayList <Stipendia_zaMesaz> stipendia_zaMesaz = poi_read.readToStipZaGod(pathToExelFile);
                         Stipendia_zaMesazData.addAll(stipendia_zaMesaz);
 
                         numberPP.setCellValueFactory(new PropertyValueFactory<Stipendia_zaMesaz, Integer>("numberPP"));
