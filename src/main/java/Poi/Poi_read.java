@@ -2,8 +2,12 @@ package Poi;
 
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
@@ -46,9 +50,6 @@ public class Poi_read {
         book.write(new FileOutputStream("D:\\tets2.xls"));
         book.close();
     }
-
-
-
 
     public void readFromExcel() throws IOException {
 
@@ -105,7 +106,113 @@ public class Poi_read {
             fis.close();
             System.out.println("------------------------------------------------------------------------------------------------------------------------------");
         }
+
     }
+
+    public void readToStipZaGod(String path) throws IOException {
+
+        ArrayList <StipendiaZaGod> stipendiaZaGods = new ArrayList<>();
+
+        FileInputStream fis = new FileInputStream(new File(path));
+        HSSFRow row;
+        HSSFWorkbook workbook = new HSSFWorkbook(fis);
+        HSSFSheet spreadsheet = null;
+        System.out.println(workbook.getNumberOfSheets());
+        for (int i = 0; workbook.getNumberOfSheets() > i; i++) {
+            spreadsheet = workbook.getSheetAt(i);
+            Iterator<Row> rowIterator = spreadsheet.iterator();
+
+            while (rowIterator.hasNext()) {
+
+//                rowIterator.
+                stipendiaZaGods.add(new StipendiaZaGod());
+                row = (HSSFRow) rowIterator.next();
+                Iterator<Cell> cellIterator = row.cellIterator();
+
+                int numColumn = 0;
+                while (cellIterator.hasNext()) {
+                    Cell cell = cellIterator.next();
+
+                    switch (cell.getCellType()) {
+                        case Cell.CELL_TYPE_NUMERIC:
+                            switch(numColumn) {
+                                case 5:
+                                    stipendiaZaGods.get(stipendiaZaGods.size() - 1).setNumberPP(cell.getNumericCellValue());
+                                    break;
+                                case 4:
+                                    stipendiaZaGods.get(stipendiaZaGods.size() - 1).setManyForMounts(cell.getNumericCellValue());
+                                    break;
+                            }
+                            break;
+
+                        case Cell.CELL_TYPE_STRING:
+                            switch(numColumn) {
+                                case 0:
+                                    stipendiaZaGods.get(stipendiaZaGods.size() - 1).setFIO(cell.getStringCellValue());
+                                    break;
+                                case 1:
+                                case 2:
+                                    stipendiaZaGods.get(stipendiaZaGods.size() - 1).setFIO(
+                                            stipendiaZaGods.get(stipendiaZaGods.size() - 1).getFIO() + " " + cell.getStringCellValue()
+                                    );
+                                    break;
+                                case 3:
+                                    stipendiaZaGods.get(stipendiaZaGods.size() - 1).setMount(cell.getStringCellValue());
+                                    break;
+                                case 6:
+                                    stipendiaZaGods.get(stipendiaZaGods.size() - 1).setStatusStudent(cell.getStringCellValue().equals("целевик") ? "ц" : "о");
+                                    break;
+                            }
+                            break;
+                        case Cell.CELL_TYPE_FORMULA:
+                            break;
+                    }
+                    numColumn++;
+                }
+                System.out.println();
+            }
+            fis.close();
+            ArrayList <godovaiaStipendia> godovaiaStipendias = new ArrayList<>();
+
+            stipendiaZaGods.stream().forEach(el -> {
+                if (godovaiaStipendias.size() == 0) {
+                    godovaiaStipendias.add(new godovaiaStipendia(el.getMount()));
+                } else {
+//                    godovaiaStipendias.stream().forEach(obj -> {
+//                        if(!obj.getMount().equals(el.getMount())) {
+//                            godovaiaStipendias.add(new godovaiaStipendia(el.getMount()));
+//                        }
+//                    });
+//                    godovaiaStipendias.stream().forEach();
+//                    godovaiaStipendias.forEach(l -> {
+//                        if(!l.getMount().equals(el.getMount())) {
+//                            godovaiaStipendias.add(new godovaiaStipendia(el.getMount()));
+//                        }
+//                    });
+                }
+            });
+//                godovaiaStipendias.stream().forEach(ell -> {
+//                    if (!ell.getMount().equals(el.getMount())) {
+//                        ell.setMount(el.getMount());
+//                    }
+//
+//                });
+//                godovaiaStipendias.add(new godovaiaStipendia());
+////                System.out.print(el.getFIO() + "\t");
+////                System.out.print(el.getMount() + "\t");
+////                System.out.print(el.getManyForMounts() + "\t");
+////                System.out.print(el.getNumberPP() + "\t");
+////                System.out.print(el.getStatusStudent() + "\t");
+////                System.out.println();
+//            });
+            godovaiaStipendias.stream().forEach(ell -> {
+                System.out.print(ell.getMount() + "\t");
+            });
+            System.out.println("------------------------------------------------------------------------------------------------------------------------------");
+        }
+
+    }
+
 
 }
 
