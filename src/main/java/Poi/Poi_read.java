@@ -2,6 +2,9 @@ package Poi;
 
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.ss.util.RegionUtil;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -17,38 +20,203 @@ public class Poi_read {
     public Poi_read(String path) throws IOException {
         this.path=path;
     }
+    private HSSFFont createCellFont(HSSFWorkbook book)
+    {
 
+        HSSFFont font = book.createFont();
+        font.setFontHeightInPoints((short) 12);
+        font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+        font.setFontName("Times New Roman");
+        return(font);
+    }
+
+
+
+    private HSSFCellStyle createCellStyle(HSSFWorkbook book)
+    {
+        BorderStyle thin  = BorderStyle.THIN;
+        short       black = IndexedColors.BLACK.getIndex();
+
+        HSSFCellStyle style = book.createCellStyle();
+
+        style.setWrapText(true);
+        style.setAlignment(CellStyle.ALIGN_CENTER);
+        style.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+
+        style.setTopBorderColor   (black);
+        style.setRightBorderColor (black);
+        style.setBottomBorderColor(black);
+        style.setLeftBorderColor  (black);
+
+        return style;
+    }
+//String pathCreate, ArrayList<Stipendia_zaMesaz> listCreate
     @SuppressWarnings("deprecation")
-    public static void writeIntoExcel() throws FileNotFoundException, IOException{
-        Workbook book = new HSSFWorkbook();
-        Sheet sheet = book.createSheet("Birthdays");
+    public void writeIntoExcelStipendiaYear(String path, ArrayList <Stipendia_zaMesaz> stipendia_zaMesaz) throws FileNotFoundException, IOException{
 
+        HSSFWorkbook book = new HSSFWorkbook();
+        HSSFSheet sheet = book.createSheet("Стипендия");;
+//        HSSFCellStyle style = (HSSFCellStyle) book.createCellStyle();
+//        style.setFont(createCellFont(book));
         // Нумерация начинается с нуля
-        Row row = sheet.createRow(0);
 
-        // Мы запишем имя и дату в два столбца
-        // имя будет String, а дата рождения --- Date,
-        // формата dd.mm.yyyy
-        Cell name = row.createCell(0);
-        name.setCellValue("John");
+        HSSFFont font = book.createFont();
 
-        Cell birthdate = row.createCell(1);
-
-        DataFormat format = book.createDataFormat();
-        CellStyle dateStyle = book.createCellStyle();
-        dateStyle.setDataFormat(format.getFormat("dd.mm.yyyy"));
-        birthdate.setCellStyle(dateStyle);
+        HSSFCellStyle style = book.createCellStyle();
+        HSSFCellStyle style1 = book.createCellStyle();
+        HSSFCellStyle style2 = book.createCellStyle();
+        HSSFCellStyle style3 = book.createCellStyle();
 
 
-        // Нумерация лет начинается с 1900-го
-        birthdate.setCellValue(new Date(110, 10, 10));
+        style.setBottomBorderColor(HSSFCellStyle.BORDER_MEDIUM);
+        style.setBorderTop(HSSFCellStyle.BORDER_MEDIUM);
+        style.setBorderRight(HSSFCellStyle.BORDER_MEDIUM);
+        style.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
+        style1.setAlignment(style.ALIGN_CENTER);
+        style1.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+        style1.setBottomBorderColor(HSSFCellStyle.BORDER_MEDIUM);
+        style1.setBorderTop(HSSFCellStyle.BORDER_MEDIUM);
+        style1.setBorderRight(HSSFCellStyle.BORDER_MEDIUM);
+        style1.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
+        style2.setBottomBorderColor(HSSFCellStyle.BORDER_MEDIUM);
+        style2.setBorderTop(HSSFCellStyle.BORDER_MEDIUM);
+        style2.setBorderRight(HSSFCellStyle.BORDER_MEDIUM);
+        style2.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
+        style2.setAlignment(style.ALIGN_CENTER);
+        style2.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+        style3.setBottomBorderColor(HSSFCellStyle.BORDER_MEDIUM);
+        style3.setBorderTop(HSSFCellStyle.BORDER_MEDIUM);
 
-        // Меняем размер столбца
+        // и применяем к этому стилю жирный шрифт
+        style.setFont(font);
+        font.setFontHeightInPoints((short) 12);
+        font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+        font.setFontName("Times New Roman");
+        style.setAlignment(style.ALIGN_CENTER);
+
+        HSSFRow row = sheet.createRow((short)0);
+        style1.setWrapText(true);
+        row.setRowStyle(style1);
+
+        sheet.addMergedRegion(new CellRangeAddress(0,0,0,4));
+        sheet.addMergedRegion(new CellRangeAddress(1,1,0,4));
+        sheet.autoSizeColumn(0);
+
+        Cell cell1 = row.createCell(0);
+        Cell cell1_1 = row.createCell(1);
+        Cell cell1_2 = row.createCell(2);
+        Cell cell1_3 = row.createCell(3);
+        Cell cell1_4 = row.createCell(4);
+        row.getCell(0).setCellStyle(style);
+        row.getCell(1).setCellStyle(style);
+        row.getCell(2).setCellStyle(style);
+        row.getCell(3).setCellStyle(style);
+        row.getCell(4).setCellStyle(style);
+        cell1.setCellValue("С Т И П Е Н Д И Я");
+        row = sheet.createRow(1);
+        Cell cell2 = row.createCell(0);
+        Cell cell2_1 = row.createCell(1);
+        Cell cell2_2 = row.createCell(2);
+        Cell cell2_3 = row.createCell(3);
+        Cell cell2_4 = row.createCell(4);
+        row.getCell(0).setCellStyle(style);
+        row.getCell(1).setCellStyle(style);
+        row.getCell(2).setCellStyle(style);
+        row.getCell(3).setCellStyle(style);
+        row.getCell(4).setCellStyle(style);
+        row.getCell(0).setCellStyle(style);
+        cell2.setCellValue("Год");
+        row = sheet.createRow(2);
+        Cell cell3_1 = row.createCell(0);
+        row.getCell(0).setCellStyle(style);
+        cell3_1.setCellValue("№ п/п");
+        sheet.autoSizeColumn(0);
+        Cell cell3_2 = row.createCell(1);
+        row.getCell(1).setCellStyle(style);
+        cell3_2.setCellValue("Тип");
         sheet.autoSizeColumn(1);
+        Cell cell3_3 = row.createCell(2);
+        row.getCell(2).setCellStyle(style);
+        cell3_3.setCellValue("    Фамилия     Имя     Отчество    ");
+        sheet.autoSizeColumn(2);
+        Cell cell3_4 = row.createCell(3);
+        row.getCell(3).setCellStyle(style);
+        cell3_4.setCellValue("Сумма, руб");
+        sheet.autoSizeColumn(3);
+        Cell cell3_5 = row.createCell(4);
+        row.getCell(4).setCellStyle(style);
+        cell3_5.setCellValue("Примечание");
+        sheet.autoSizeColumn(4);
+
+        double summ = 0;
+        int oD = 0;
+        int cE = 0;
+        int i;
+        for (i = 0; i < stipendia_zaMesaz.size(); i++) {
+            row = sheet.createRow(i+3);
+            Cell cell4_1 = row.createCell(0);
+            row.getCell(0).setCellStyle(style2);
+            cell4_1.setCellValue(stipendia_zaMesaz.get(i).getNumberPP());
+            Cell cell4_2 = row.createCell(1);
+            row.getCell(1).setCellStyle(style2);
+            cell4_2.setCellValue( stipendia_zaMesaz.get(i).getStatusStudent());
+            if(stipendia_zaMesaz.get(i).getStatusStudent().equals("ц"))
+                cE++;
+            else
+                oD++;
+            Cell cell4_3 = row.createCell(2);
+            row.getCell(2).setCellStyle(style2);
+            cell4_3.setCellValue(stipendia_zaMesaz.get(i).getFio());
+            Cell cell4_4 = row.createCell(3);
+            row.getCell(3).setCellStyle(style2);
+            cell4_4.setCellValue(stipendia_zaMesaz.get(i).getSummaR());
+            summ=summ+stipendia_zaMesaz.get(i).getSummaR();
+            Cell cell4_5 = row.createCell(4);
+            row.getCell(4).setCellStyle(style1);
+            cell4_5.setCellValue(stipendia_zaMesaz.get(i).getMounts());
+
+        }
+        row = sheet.createRow(i+3);
+        Cell cell5_1 = row.createCell(0);
+        row.getCell(0).setCellStyle(style1);
+        Cell cell5_2 = row.createCell(1);
+        row.getCell(1).setCellStyle(style1);
+        Cell cell5_3 = row.createCell(2);
+        row.getCell(2).setCellStyle(style);
+        cell5_3.setCellValue("Ц = " + cE + " чел.,   О = " + oD + " чел.,   ИТОГО:");
+        Cell cell5_4 = row.createCell(3);
+        row.getCell(3).setCellStyle(style);
+        cell5_4.setCellValue(summ);
+        Cell cell5_5 = row.createCell(4);
+        row.getCell(4).setCellStyle(style1);
+
+        row = sheet.createRow(i+4);
+        Cell cell6_1 = row.createCell(0);
+        row.getCell(0).setCellStyle(style3);
+        Cell cell6_2 = row.createCell(1);
+        row.getCell(1).setCellStyle(style3);
+        Cell cell6_3 = row.createCell(2);
+        row.getCell(2).setCellStyle(style3);
+        cell6_3.setCellValue("Ответсвенное лицо _________________");
+        Cell cell6_4 = row.createCell(3);
+        row.getCell(3).setCellStyle(style3);
+        cell6_4.setCellValue("         Подпись");
+        Cell cell6_5 = row.createCell(4);
+        cell6_5.setCellValue("______________");
+        row.getCell(4).setCellStyle(style3);
+
+        row = sheet.createRow(i+6);
+        Cell cell7_4 = row.createCell(3);
+        cell7_4.setCellValue("              Дата");
+        Cell cell8_5 = row.createCell(4);
+        cell8_5.setCellValue("______________");
+
 
         // Записываем всё в файл
-        book.write(new FileOutputStream("D:\\tets2.xls"));
+        FileOutputStream fin = new FileOutputStream(path);
+        book.write(fin);
         book.close();
+        fin.close();
     }
 
     public void readFromExcel() throws IOException {
@@ -219,7 +387,7 @@ public class Poi_read {
 
                 stipendia_zaMesazs.get(stipendia_zaMesazs.size() - 1).setMounts((el.getManyForAnvar() != 0? "январь\n" : "") + (el.getManyForFevral() != 0? "февраль\n" : "") + (el.getManyForMart() != 0? "март\n" : "") +
                         (el.getManyForAprel() != 0? "апрель\n" : "") + (el.getManyForMai() != 0? "май\n" : "") + (el.getManyForiun() != 0? "июнь\n" : "") +(el.getManyForiul() != 0? "июль\n" : "" )+ (el.getManyForaugust() != 0? "август\n" : "") +
-                        (el.getManyForSentabr() != 0? "сентябрь\n" : "" ) +  (el.getManyForOkt() != 0? "октябрь\n" : "") + (el.getManyForNoabr() != 0? "ноябрь\n" : "") + (el.getManyForDekabr() != 0? "декабрь\n" : "") );
+                        (el.getManyForSentabr() != 0? "сентябрь\n" : "" ) +  (el.getManyForOkt() != 0? "октябрь\n" : "") + (el.getManyForNoabr() != 0? "ноябрь\n" : "") + (el.getManyForDekabr() != 0? "декабрь" : "") );
             });
 
 //            stipendia_zaMesazs.stream().forEach(el -> {

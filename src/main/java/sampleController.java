@@ -86,6 +86,31 @@ public class sampleController {
         ObservableList<String> mounts = FXCollections.observableArrayList("Январь", "Февраль", "Март", "Апрель",
                                                                                 "Май", "Июнь", "Июль", "Август",
                                                                                 "Сентябрь", "Октябрь", "Ноябрь", "Декабрь");
+        addOtchot.setOnAction(e->{
+
+            switch (selectTyprOtchot.getValue()) {
+                case "?" :
+                    break;
+                case "Годовая выплата стипендииwew" :
+                    break;
+                case "Годовая выплата стипендии" :
+
+                    try {
+                        String path = "123";
+                        ObservableList<Stipendia_zaMesaz> Stipendia_zaMesazData = FXCollections.observableArrayList();
+
+                        Poi_read poi_read = new Poi_read("d");
+                        ArrayList <Stipendia_zaMesaz> stipendia_zaMesaz = poi_read.readToStipZaGod("D:\\Parus8.xls");
+                        poi_read.writeIntoExcelStipendiaYear(path,stipendia_zaMesaz);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    break;
+                case "Месячный отчет по фонду заработной платы" :
+                    break;
+            }
+
+        });
         selectTimes.setItems(mounts);
 
         otchot1.setVisible(false);
@@ -137,7 +162,7 @@ public class sampleController {
                         ObservableList<Stipendia_zaMesaz> Stipendia_zaMesazData = FXCollections.observableArrayList();
 
                         Poi_read poi_read = new Poi_read("d");
-                        ArrayList <Stipendia_zaMesaz> stipendia_zaMesaz = poi_read.readToStipZaGod("C:\\Users\\Admin\\Downloads\\Parus8.xls");
+                        ArrayList <Stipendia_zaMesaz> stipendia_zaMesaz = poi_read.readToStipZaGod("D:\\Parus8.xls");
                         Stipendia_zaMesazData.addAll(stipendia_zaMesaz);
 
                         numberPP.setCellValueFactory(new PropertyValueFactory<Stipendia_zaMesaz, Integer>("numberPP"));
