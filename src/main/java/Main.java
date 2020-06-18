@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import Poi.Poi_read;
 
+import java.io.IOException;
+
 public class Main extends Application {
 
     @Override
@@ -21,7 +23,7 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public static void main(String [] args)  {
+    public static void main(String [] args) throws IOException {
 
         Poi_read p = new Poi_read("C:\\Users\\Admin\\Downloads\\test.xls");
         p.readToStipZaGod("C:\\Users\\Admin\\Downloads\\Parus8.xls");
