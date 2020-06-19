@@ -52,13 +52,10 @@ public class Poi_read {
     }
 //String pathCreate, ArrayList<Stipendia_zaMesaz> listCreate
     @SuppressWarnings("deprecation")
-    public void writeIntoExcelStipendiaYear(String path, ArrayList <Stipendia_zaMesaz> stipendia_zaMesaz) throws FileNotFoundException, IOException{
+    public void writeIntoExcelStipendiaYear(String path, ArrayList <Stipendia_zaMesaz> stipendia_zaMesaz, String year) throws FileNotFoundException, IOException{
 
         HSSFWorkbook book = new HSSFWorkbook();
-        HSSFSheet sheet = book.createSheet("Стипендия");;
-//        HSSFCellStyle style = (HSSFCellStyle) book.createCellStyle();
-//        style.setFont(createCellFont(book));
-        // Нумерация начинается с нуля
+        HSSFSheet sheet = book.createSheet("Стипендия");
 
         HSSFFont font = book.createFont();
 
@@ -125,7 +122,7 @@ public class Poi_read {
         row.getCell(3).setCellStyle(style);
         row.getCell(4).setCellStyle(style);
         row.getCell(0).setCellStyle(style);
-        cell2.setCellValue("Год");
+        cell2.setCellValue(year + " год");
         row = sheet.createRow(2);
         Cell cell3_1 = row.createCell(0);
         row.getCell(0).setCellStyle(style);

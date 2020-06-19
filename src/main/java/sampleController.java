@@ -98,14 +98,12 @@ public class sampleController {
                 case "Годовая выплата стипендииwew" :
                     break;
                 case "Годовая выплата стипендии" :
-
                     try {
-                        String path = "123";
                         ObservableList<Stipendia_zaMesaz> Stipendia_zaMesazData = FXCollections.observableArrayList();
 
-                        Poi_read poi_read = new Poi_read("d");
-                        ArrayList <Stipendia_zaMesaz> stipendia_zaMesaz = poi_read.readToStipZaGod("D:\\Parus8.xls");
-                        poi_read.writeIntoExcelStipendiaYear(path,stipendia_zaMesaz);
+                        Poi_read poi_read = new Poi_read(null);
+                        ArrayList <Stipendia_zaMesaz> stipendia_zaMesaz = poi_read.readToStipZaGod(pathToExelFile);
+                        poi_read.writeIntoExcelStipendiaYear(pathToNewFile, stipendia_zaMesaz, "2010");
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
