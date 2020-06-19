@@ -90,6 +90,17 @@ public class sampleController extends Component {
     @FXML
     private Label lab;
 
+    @FXML
+    private TableView<?> stipZaMesaz;
+    @FXML
+    private TableColumn<?, ?> mesST_numberPP;
+    @FXML
+    private TableColumn<?, ?> mesST_statusSt;
+    @FXML
+    private TableColumn<?, ?> mesST_FIO;
+    @FXML
+    private TableColumn<?, ?> mesST_summa;
+
     String pathToNewFile = null;
     String pathToOpenFile = null;
     String pathToExelFile = null;
@@ -108,7 +119,8 @@ public class sampleController extends Component {
             switch (selectTyprOtchot.getValue()) {
                 case "?" :
                     break;
-                case "Годовая выплата стипендииwew" :
+                case "Выплата стипендии за месяц" :
+
                     break;
                 case "Годовая выплата стипендии" :
                     try {
@@ -172,8 +184,9 @@ public class sampleController extends Component {
             selectTimes.setVisible(true);
             switch (selectTyprOtchot.getValue()) {
                 case "Выплата стипендии за месяц" :
-                    otchot1.setVisible(true);
-                    otchot2.setVisible(false);
+                    lab.setText("Месяц");
+                    otchot1.setVisible(false);
+                    otchot2.setVisible(true);
                     otchot3.setVisible(false);
                     otchot4.setVisible(false);
                     tableEmpty.setVisible(false);

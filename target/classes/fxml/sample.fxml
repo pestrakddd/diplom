@@ -72,32 +72,6 @@
                   </TableView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="otchot1" layoutX="9.0" layoutY="52.0" prefHeight="546.0" prefWidth="816.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="54.60000000000002">
-               <children>
-                  <TableView prefHeight="545.0" prefWidth="810.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <columns>
-                        <TableColumn minWidth="60.0" prefWidth="60.0" />
-                        <TableColumn minWidth="120.0" prefWidth="50.4000244140625" text="№ п/п" />
-                        <TableColumn prefWidth="137.59999084472656" text="Наименование, Ф.И.О" />
-                        <TableColumn minWidth="65.0" prefWidth="65.0" text="    Вид &#10;нетруд-ти" />
-                        <TableColumn prefWidth="137.60003662109375" text="ФЗП">
-                           <columns>
-                              <TableColumn minWidth="30.0" prefWidth="30.0" text="Дни" />
-                              <TableColumn minWidth="100.0" text="Сумма" />
-                           </columns>
-                        </TableColumn>
-                        <TableColumn minWidth="0.0" prefWidth="118.4000244140625" text="Соц. страх.">
-                           <columns>
-                              <TableColumn minWidth="30.0" prefWidth="30.0" text="Дни" />
-                              <TableColumn minWidth="100.0" text="Сумма" />
-                           </columns>
-                        </TableColumn>
-                        <TableColumn minWidth="45.0" prefWidth="45.0" />
-                        <TableColumn minWidth="120.0" prefWidth="120.0" text="Период" />
-                     </columns>
-                  </TableView>
-               </children>
-            </AnchorPane>
             <Label layoutX="14.0" layoutY="11.0" prefHeight="31.0" prefWidth="76.0" text="Тип отчета" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="11.0" />
             <Label fx:id="lab" layoutX="325.0" layoutY="14.0" prefHeight="26.0" prefWidth="65.0" text="Месяц" AnchorPane.rightAnchor="371.0" AnchorPane.topAnchor="14.0" />
             <Button fx:id="addOtchot" layoutX="698.0" layoutY="13.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" text="Создать отчет" AnchorPane.rightAnchor="21.600000000000023" AnchorPane.topAnchor="13.0" />
@@ -144,15 +118,29 @@
                   </TableView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="otchot2" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="54.60000000000002">
+            <AnchorPane fx:id="otchot1" layoutX="9.0" layoutY="52.0" prefHeight="546.0" prefWidth="816.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="54.60000000000002">
                <children>
-                  <TableView prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <columns>
-                      <TableColumn fx:id="godST_mount" prefWidth="194.3999605178833" text="Месяц" />
-                      <TableColumn fx:id="godST_kol_voStudent" prefWidth="185.6000213623047" text="Количество студентов" />
-                        <TableColumn fx:id="godST_summaZaMesaz" prefWidth="190.4000244140625" text="Сумма за месяц" />
-                        <TableColumn fx:id="godST_SummaItogo" prefWidth="250.4000244140625" text="Сумма итого" />
-                    </columns>
+                  <TableView prefHeight="545.0" prefWidth="810.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TableColumn minWidth="60.0" prefWidth="60.0" />
+                        <TableColumn minWidth="120.0" prefWidth="50.4000244140625" text="№ п/п" />
+                        <TableColumn prefWidth="137.59999084472656" text="Наименование, Ф.И.О" />
+                        <TableColumn minWidth="65.0" prefWidth="65.0" text="    Вид &#10;нетруд-ти" />
+                        <TableColumn prefWidth="137.60003662109375" text="ФЗП">
+                           <columns>
+                              <TableColumn minWidth="30.0" prefWidth="30.0" text="Дни" />
+                              <TableColumn minWidth="100.0" text="Сумма" />
+                           </columns>
+                        </TableColumn>
+                        <TableColumn minWidth="0.0" prefWidth="118.4000244140625" text="Соц. страх.">
+                           <columns>
+                              <TableColumn minWidth="30.0" prefWidth="30.0" text="Дни" />
+                              <TableColumn minWidth="100.0" text="Сумма" />
+                           </columns>
+                        </TableColumn>
+                        <TableColumn minWidth="45.0" prefWidth="45.0" />
+                        <TableColumn minWidth="120.0" prefWidth="120.0" text="Период" />
+                     </columns>
                   </TableView>
                </children>
             </AnchorPane>
@@ -165,6 +153,18 @@
                         <TableColumn fx:id="FIO" prefWidth="296.00001525878906" text="Ф.И.О" />
                         <TableColumn fx:id="summa" prefWidth="160.79998779296875" text="Сумма" />
                         <TableColumn fx:id="mounts" prefWidth="199.20001220703125" text="Примечание" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="otchot2" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="54.60000000000002">
+               <children>
+                  <TableView fx:id="stipZaMesaz" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                        <TableColumn fx:id="mesST_numberPP" prefWidth="53.60000705718994" text="№ П/П" />
+                        <TableColumn fx:id="mesST_statusSt" prefWidth="115.19998168945312" text="Целевик,&#10;Одаренный&#10;" />
+                        <TableColumn fx:id="mesST_FIO" prefWidth="426.40000915527344" text="Ф.И.О" />
+                        <TableColumn fx:id="mesST_summa" prefWidth="229.5999755859375" text="Сумма" />
                     </columns>
                   </TableView>
                </children>
