@@ -167,7 +167,7 @@ public class sampleController extends Component {
             if(selectTyprOtchot.getValue().equals("Выплата стипендии за месяц")) {
                 indexMount = index;
                 try {
-                    Poi_read poi_read1 = new Poi_read(null);
+                    Poi_read poi_read1 = new Poi_read();
                     zapolneniTablSoStipZaMesaz(poi_read1.readToStipZamesaz(pathToExelFile, index));
 
                 } catch (IOException ex) {
@@ -183,7 +183,7 @@ public class sampleController extends Component {
                     break;
                 case "Выплата стипендии за месяц" :
                     try {
-                        Poi_read poi_read1 = new Poi_read(null);
+                        Poi_read poi_read1 = new Poi_read();
                         ArrayList<godovaiaStipendia> stipendia_zaMesaz = poi_read1.readToStipZamesaz(pathToExelFile, indexMount);
                         if (poi_read1.writeIntoExcelStipendiaMount(pathToNewFile, stipendia_zaMesaz, selectTimes.getValue())) {
                             System.out.println("Вы знаете что такое успех?..");
@@ -197,7 +197,7 @@ public class sampleController extends Component {
                     break;
                 case "Годовая выплата стипендии" :
                     try {
-                        Poi_read poi_read = new Poi_read(null);
+                        Poi_read poi_read = new Poi_read();
                         ArrayList <Stipendia_zaMesaz> stipendia_zaMesaz = poi_read.readToStipZaGod(pathToExelFile);
                         if (selectTimes.getValue() == null) {
                             JFrame topFrame = (JFrame)SwingUtilities.getWindowAncestor(this);
@@ -264,7 +264,7 @@ public class sampleController extends Component {
                     selectTimes.setItems(mounts);
 
                     try {
-                        Poi_read poi_read1 = new Poi_read(null);
+                        Poi_read poi_read1 = new Poi_read();
                         zapolneniTablSoStipZaMesaz(poi_read1.readToStipZamesaz(pathToExelFile, 0));
 
                     } catch (IOException ex) {
@@ -290,7 +290,7 @@ public class sampleController extends Component {
                     try {
                         ObservableList<Stipendia_zaMesaz> Stipendia_zaMesazData = FXCollections.observableArrayList();
 
-                        Poi_read poi_read = new Poi_read(null);
+                        Poi_read poi_read = new Poi_read();
                         ArrayList <Stipendia_zaMesaz> stipendia_zaMesaz = poi_read.readToStipZaGod(pathToExelFile);
                         Stipendia_zaMesazData.addAll(stipendia_zaMesaz);
 
