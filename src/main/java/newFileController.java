@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.InputMethodEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -21,6 +22,7 @@ import java.util.logging.Logger;
 
 public class newFileController {
     private static String path = null;
+    private static String pathExel = null;
     private static Stage stage;
 
     @FXML
@@ -41,23 +43,33 @@ public class newFileController {
     @FXML
     void initialize() {
         workDirectory.setTooltip(new Tooltip("Директориия проекта"));
-        nameFile.setTooltip(new Tooltip("Название файла"));
+        nameFile.setTooltip(new Tooltip("Название файла: формат '*.xls'"));
 
         newFile.setDisable(true);
 
+        selectFile.setOnAction(e-> {
+            final FileChooser fileChooser = new FileChooser();
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("exel files (*.xls)", "*.xls");
+            fileChooser.getExtensionFilters().add(extFilter);
+            File file = fileChooser.showOpenDialog(stage);
+            if (file != null) {
+                pathExel = file.getPath();
+                pathFileForExel.setText(pathExel);
+            }
+        });
+
         close.setOnAction(e -> {
             path = null;
+            pathExel = null;
             stage.close();
         });
 
         workDirectory.textProperty().addListener( (ov,oldV,newV) -> {
             Path path = Paths.get(workDirectory.getText());
-            if (!Files.exists(path)) {
+            if (!Files.exists(path) || workDirectory.getText().equals(null)) {
                 workDirectory.setStyle("-fx-text-inner-color: red;");
-                newFile.setDisable(true);
             } else {
                 workDirectory.setStyle("-fx-text-inner-color: black;");
-                newFile.setDisable(false);
             }
             workDirectory.setTooltip(new Tooltip(!newFile.isDisable()? "Директориия проекта" : "Такой директории не существует"));
         });
@@ -66,26 +78,31 @@ public class newFileController {
             File file = new File(workDirectory.getText() + newV.toString());
             Path path = Paths.get(workDirectory.getText());
             if (!file.exists() && Files.exists(path)) {
-                nameFile.setStyle("-fx-text-inner-color: black;");
-                newFile.setDisable(false);
+                if (newV.trim().length() > 4 && newV.trim().charAt(newV.length() - 4) == '.' &&
+                    newV.trim().charAt(newV.length() - 3) == 'x' &&
+                    newV.trim().charAt(newV.length() - 2) == 'l' &&
+                    newV.trim().charAt(newV.length() - 1) == 's') {
+                    nameFile.setStyle("-fx-text-inner-color: black;");
+                    newFile.setDisable(false);
+                } else {
+                    nameFile.setStyle("-fx-text-inner-color: red;");
+                    newFile.setDisable(true);
+                }
             } else {
                 nameFile.setStyle("-fx-text-inner-color: red;");
                 newFile.setDisable(true);
             }
-            nameFile.setTooltip(new Tooltip(!newFile.isDisable()? "Название файла" : "Такой файл уже существует"));
-        });
-
-        isSelectFile.setOnAction(e -> {
-            selectFile.setDisable(isSelectFile.isSelected());
+            nameFile.setTooltip(new Tooltip(!newFile.isDisable()? "Название файла: формат '*.xls'" : "Такой файл уже существует"));
         });
 
         newFile.setOnAction(e -> {
+            if (pathFileForExel.getText().length() == 0) return;
             path = workDirectory.getText() + nameFile.getText();
             stage.close();
         });
     }
 
-    static String start() {
+    static String[] start() {
         try {
             stage = new Stage();
             stage.setTitle("Создать файл");
@@ -97,7 +114,10 @@ public class newFileController {
             Logger logger = Logger.getLogger(newFileController.class.getName());
             logger.log(Level.SEVERE, "Failed to create new Window.", e);
         }
-        return path;
+        String [] returnString = new String[2];
+        returnString[0] = path;
+        returnString[1] = pathExel;
+        return returnString;
     }
 }
 
