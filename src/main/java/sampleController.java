@@ -185,8 +185,11 @@ public class sampleController extends Component {
                     try {
                         Poi_read poi_read1 = new Poi_read(null);
                         ArrayList<godovaiaStipendia> stipendia_zaMesaz = poi_read1.readToStipZamesaz(pathToExelFile, indexMount);
-                        poi_read1.writeIntoExcelStipendiaMount(pathToNewFile, stipendia_zaMesaz, selectTimes.getValue());
-
+                        if (poi_read1.writeIntoExcelStipendiaMount(pathToNewFile, stipendia_zaMesaz, selectTimes.getValue())) {
+                            System.out.println("Вы знаете что такое успех?..");
+                            JFrame topFrame = (JFrame)SwingUtilities.getWindowAncestor(this);
+                            JOptionPane.showMessageDialog(topFrame, "Файл успешно создан!");
+                        }
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
