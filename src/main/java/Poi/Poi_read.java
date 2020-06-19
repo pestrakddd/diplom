@@ -170,7 +170,7 @@ public class Poi_read {
             Cell cell4_4 = row.createCell(3);
             row.getCell(3).setCellStyle(style2);
             cell4_4.setCellValue(stipendia_zaMesaz.get(i).getSummaR());
-            summ=summ+stipendia_zaMesaz.get(i).getSummaR();
+            summ = summ + stipendia_zaMesaz.get(i).getSummaR();
             Cell cell4_5 = row.createCell(4);
             row.getCell(4).setCellStyle(style1);
             cell4_5.setCellValue(stipendia_zaMesaz.get(i).getMounts());
