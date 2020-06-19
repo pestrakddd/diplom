@@ -214,7 +214,180 @@ public class Poi_read {
         }
     }
 
-    public void writeIntoExcelStipendiaMount(String path, ArrayList<godovaiaStipendia> list, String mount) {
+    public boolean writeIntoExcelStipendiaMount(String path, ArrayList<godovaiaStipendia> list, String mount) {
+
+        try {
+            HSSFWorkbook book = new HSSFWorkbook();
+            HSSFSheet sheet = book.createSheet("Стипендия_за_месяц");
+
+            HSSFFont font = book.createFont();
+
+            HSSFCellStyle style = book.createCellStyle();
+            HSSFCellStyle style1 = book.createCellStyle();
+            HSSFCellStyle style2 = book.createCellStyle();
+            HSSFCellStyle style3 = book.createCellStyle();
+
+
+//            style.setBottomBorderColor(HSSFCellStyle.BORDER_MEDIUM);
+            style.setBorderTop(HSSFCellStyle.BORDER_MEDIUM);
+            style.setBorderRight(HSSFCellStyle.BORDER_MEDIUM);
+            style.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
+            style1.setAlignment(style.ALIGN_CENTER);
+            style1.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+            style1.setBottomBorderColor(HSSFCellStyle.BORDER_MEDIUM);
+            style1.setBorderTop(HSSFCellStyle.BORDER_MEDIUM);
+            style1.setBorderRight(HSSFCellStyle.BORDER_MEDIUM);
+            style1.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
+            style2.setBottomBorderColor(HSSFCellStyle.BORDER_MEDIUM);
+            style2.setBorderTop(HSSFCellStyle.BORDER_MEDIUM);
+            style2.setBorderRight(HSSFCellStyle.BORDER_MEDIUM);
+            style2.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
+            style2.setAlignment(style.ALIGN_CENTER);
+            style2.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+            style3.setBottomBorderColor(HSSFCellStyle.BORDER_MEDIUM);
+            style3.setBorderTop(HSSFCellStyle.BORDER_MEDIUM);
+
+            // и применяем к этому стилю жирный шрифт
+            style.setFont(font);
+            font.setFontHeightInPoints((short) 12);
+            font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+            font.setFontName("Times New Roman");
+            style.setAlignment(style.ALIGN_CENTER);
+
+            HSSFRow row = sheet.createRow((short) 0);
+            style1.setWrapText(true);
+            row.setRowStyle(style1);
+
+            sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 3));
+            sheet.addMergedRegion(new CellRangeAddress(1, 1, 0, 3));
+            sheet.autoSizeColumn(0);
+
+            Cell cell1 = row.createCell(0);
+            Cell cell1_1 = row.createCell(1);
+            Cell cell1_2 = row.createCell(2);
+            Cell cell1_3 = row.createCell(3);
+//            Cell cell1_4 = row.createCell(4);
+            row.getCell(0).setCellStyle(style);
+            row.getCell(1).setCellStyle(style);
+            row.getCell(2).setCellStyle(style);
+            row.getCell(3).setCellStyle(style);
+//            row.getCell(4).setCellStyle(style);
+            cell1.setCellValue("С Т И П Е Н Д И Я");
+            row = sheet.createRow(1);
+            Cell cell2 = row.createCell(0);
+            Cell cell2_1 = row.createCell(1);
+            Cell cell2_2 = row.createCell(2);
+            Cell cell2_3 = row.createCell(3);
+//            Cell cell2_4 = row.createCell(4);
+            row.getCell(0).setCellStyle(style);
+            row.getCell(1).setCellStyle(style);
+            row.getCell(2).setCellStyle(style);
+            row.getCell(3).setCellStyle(style);
+            row.getCell(4).setCellStyle(style);
+//            row.getCell(0).setCellStyle(style);
+            cell2.setCellValue(" За " + mount);
+            row = sheet.createRow(2);
+            Cell cell3_1 = row.createCell(0);
+            row.getCell(0).setCellStyle(style);
+            cell3_1.setCellValue("№ п/п");
+            sheet.autoSizeColumn(0);
+            Cell cell3_2 = row.createCell(1);
+            row.getCell(1).setCellStyle(style);
+            cell3_2.setCellValue("Тип");
+            sheet.autoSizeColumn(1);
+            Cell cell3_3 = row.createCell(2);
+            row.getCell(2).setCellStyle(style);
+            cell3_3.setCellValue("    Фамилия     Имя     Отчество    ");
+            sheet.autoSizeColumn(2);
+            Cell cell3_4 = row.createCell(3);
+            row.getCell(3).setCellStyle(style);
+            cell3_4.setCellValue("Сумма, руб");
+            sheet.autoSizeColumn(3);
+//            Cell cell3_5 = row.createCell(4);
+//            row.getCell(4).setCellStyle(style);
+//            cell3_5.setCellValue("Примечание");
+//            sheet.autoSizeColumn(4);
+
+//            System.out.println(el.getNumberPP());
+//            System.out.println(el.getFIO());
+//            System.out.println(el.getStatusSt());
+//            System.out.println(el.getSumma());
+
+            double summ = 0;
+            int oD = 0;
+            int cE = 0;
+            int i;
+            for (i = 0; i < list.size(); i++) {
+                row = sheet.createRow(i + 3);
+                Cell cell4_1 = row.createCell(0);
+                row.getCell(0).setCellStyle(style2);
+                cell4_1.setCellValue(list.get(i).getNumberPP());
+                Cell cell4_2 = row.createCell(1);
+                row.getCell(1).setCellStyle(style2);
+                cell4_2.setCellValue(list.get(i).getStatusSt());
+                if (list.get(i).getStatusSt().equals("ц"))
+                    cE++;
+                else
+                    oD++;
+                Cell cell4_3 = row.createCell(2);
+                row.getCell(2).setCellStyle(style2);
+                cell4_3.setCellValue(list.get(i).getFIO());
+                Cell cell4_4 = row.createCell(3);
+                row.getCell(3).setCellStyle(style2);
+                cell4_4.setCellValue(list.get(i).getSumma());
+                summ = summ + list.get(i).getSumma();
+//                Cell cell4_5 = row.createCell(4);
+//                row.getCell(4).setCellStyle(style1);
+//                cell4_5.setCellValue(stipendia_zaMesaz.get(i).getMounts());
+
+            }
+            sheet.addMergedRegion(new CellRangeAddress(i+3, i+3, 0, 2));
+            row = sheet.createRow(i + 3);
+            Cell cell5_1 = row.createCell(0);
+//            row.getCell(0).setCellStyle(style1);
+            Cell cell5_2 = row.createCell(1);
+            row.getCell(1).setCellStyle(style1);
+            Cell cell5_3 = row.createCell(2);
+            row.getCell(2).setCellStyle(style);
+            cell5_1.setCellValue("Ц = " + cE + " чел.,   О = " + oD + " чел., Всего = " + (cE+oD) + " чел.. ИТОГ:");
+            Cell cell5_4 = row.createCell(3);
+            row.getCell(0).setCellStyle(style);
+            cell5_4.setCellValue(summ);
+//            Cell cell5_5 = row.createCell(4);
+//            row.getCell(4).setCellStyle(style1);
+
+            row = sheet.createRow(i + 4);
+            Cell cell6_1 = row.createCell(0);
+            row.getCell(0).setCellStyle(style3);
+            Cell cell6_2 = row.createCell(1);
+            row.getCell(1).setCellStyle(style3);
+            Cell cell6_3 = row.createCell(2);
+            row.getCell(2).setCellStyle(style3);
+            cell6_3.setCellValue("Ответсвенное лицо _________________");
+            Cell cell6_4 = row.createCell(3);
+            row.getCell(3).setCellStyle(style3);
+            cell6_4.setCellValue("         Подпись");
+            Cell cell6_5 = row.createCell(4);
+            cell6_5.setCellValue("______________");
+//            row.getCell(4).setCellStyle(style3);
+
+            row = sheet.createRow(i + 6);
+            Cell cell7_4 = row.createCell(3);
+            cell7_4.setCellValue("              Дата");
+            Cell cell8_5 = row.createCell(4);
+            cell8_5.setCellValue("______________");
+
+
+            // Записываем всё в файл
+            FileOutputStream fin = new FileOutputStream(path);
+            System.out.println("11111111111111111111111111111111111111");
+            book.write(fin);
+            book.close();
+            fin.close();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
 
     }
 
