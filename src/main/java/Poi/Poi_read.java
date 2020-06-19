@@ -11,41 +11,12 @@ import java.util.Iterator;
 public class Poi_read {
     String path;
 
-    public Poi_read(String path) throws IOException {
+    public Poi_read(String path) {
         this.path = path;
     }
 
-    private HSSFFont createCellFont(HSSFWorkbook book) {
-
-        HSSFFont font = book.createFont();
-        font.setFontHeightInPoints((short) 12);
-        font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
-        font.setFontName("Times New Roman");
-        return (font);
-    }
-
-
-    private HSSFCellStyle createCellStyle(HSSFWorkbook book) {
-        BorderStyle thin = BorderStyle.THIN;
-        short black = IndexedColors.BLACK.getIndex();
-
-        HSSFCellStyle style = book.createCellStyle();
-
-        style.setWrapText(true);
-        style.setAlignment(CellStyle.ALIGN_CENTER);
-        style.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
-
-        style.setTopBorderColor(black);
-        style.setRightBorderColor(black);
-        style.setBottomBorderColor(black);
-        style.setLeftBorderColor(black);
-
-        return style;
-    }
-
-    //String pathCreate, ArrayList<Stipendia_zaMesaz> listCreate
     @SuppressWarnings("deprecation")
-    public boolean writeIntoExcelStipendiaYear(String path, ArrayList<Stipendia_zaMesaz> stipendia_zaMesaz, String year) throws FileNotFoundException, IOException {
+    public boolean writeIntoExcelStipendiaYear(String path, ArrayList<Stipendia_zaMesaz> stipendia_zaMesaz, String year) {
 
         try {
             HSSFWorkbook book = new HSSFWorkbook();
@@ -214,6 +185,7 @@ public class Poi_read {
         }
     }
 
+    @SuppressWarnings("deprecation")
     public boolean writeIntoExcelStipendiaMount(String path, ArrayList<godovaiaStipendia> list, String mount) {
 
         try {
@@ -283,7 +255,7 @@ public class Poi_read {
             row.getCell(1).setCellStyle(style);
             row.getCell(2).setCellStyle(style);
             row.getCell(3).setCellStyle(style);
-            row.getCell(4).setCellStyle(style);
+//            row.getCell(4).setCellStyle(style);
 //            row.getCell(0).setCellStyle(style);
             cell2.setCellValue(" За " + mount);
             row = sheet.createRow(2);
@@ -387,65 +359,6 @@ public class Poi_read {
             return true;
         } catch (Exception e) {
             return false;
-        }
-
-    }
-
-
-    public void readFromExcel() throws IOException {
-
-//        String s1;
-//        HSSFWorkbook myExcelBook = new HSSFWorkbook(new FileInputStream("D:\\ter.xls"));
-//        HSSFSheet myExcelSheet = myExcelBook.getSheetAt(0);
-//        HSSFRow row ;
-//        for (int i = 8; i < 22; i++){
-//            row = myExcelSheet.getRow(i);
-//            s1 = row.getCell(1).getStringCellValue();
-//            System.out.println(s1 +"|"+ s2 +"|"+s3 +"|"+s4 +"|"+s5 +"|"+s6 +"|"+s7 +"|"+s8 +"|"+s9 +"|"+s10);
-//        }
-//        myExcelBook.close();
-//        HSSFWorkbook myExcelBook = new HSSFWorkbook(new FileInputStream("D:\\ter.xls"));
-//        HSSFSheet myExcelSheet = myExcelBook.getSheetAt(0);
-
-        FileInputStream fis = new FileInputStream(new File(path));
-
-//            XSSFWorkbook workbook = new XSSFWorkbook(fis);
-//            XSSFSheet spreadsheet = workbook.getSheetAt(0);
-//            XSSFRow row;
-        HSSFRow row;
-        HSSFWorkbook workbook = new HSSFWorkbook(fis);
-        HSSFSheet spreadsheet = null;
-        System.out.println(workbook.getNumberOfSheets());
-        for (int i = 0; workbook.getNumberOfSheets() > i; i++) {
-            spreadsheet = workbook.getSheetAt(i);
-            Iterator<Row> rowIterator = spreadsheet.iterator();
-
-            while (rowIterator.hasNext()) {
-//                row = (XSSFRow) rowIterator.next();
-                row = (HSSFRow) rowIterator.next();
-                Iterator<Cell> cellIterator = row.cellIterator();
-
-                while (cellIterator.hasNext()) {
-                    Cell cell = cellIterator.next();
-
-                    switch (cell.getCellType()) {
-                        case Cell.CELL_TYPE_NUMERIC:
-                            System.out.print(cell.getNumericCellValue() + " \t\t ");
-                            break;
-
-                        case Cell.CELL_TYPE_STRING:
-                            System.out.print(
-                                    cell.getStringCellValue() + " \t\t ");
-                            break;
-                        case Cell.CELL_TYPE_FORMULA:
-                            System.out.print(cell.getNumericCellValue() + " \t\t ");
-                            break;
-                    }
-                }
-                System.out.println();
-            }
-            fis.close();
-            System.out.println("------------------------------------------------------------------------------------------------------------------------------");
         }
 
     }
@@ -729,14 +642,6 @@ public class Poi_read {
             }
         });
         godovaiaStipendias.removeAll(position);
-
-        godovaiaStipendias.stream().forEach(el -> {
-            System.out.println(el.getNumberPP());
-            System.out.println(el.getFIO());
-            System.out.println(el.getStatusSt());
-            System.out.println(el.getSumma());
-            System.out.println();
-        });
         return godovaiaStipendias;
     }
 }
