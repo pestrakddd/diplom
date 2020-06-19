@@ -313,7 +313,7 @@ public class Poi_read {
             sheet.addMergedRegion(new CellRangeAddress(i + 6, i + 6, 0, 3));
             row = sheet.createRow(i + 6);
             Cell cell7_1 = row.createCell(0);
-            cell7_1.setCellValue("              Дата ______________");
+            cell7_1.setCellValue("                                                                     Дата ______________");
             Cell cell8_5 = row.createCell(4);
 
             FileOutputStream fin = new FileOutputStream(path);

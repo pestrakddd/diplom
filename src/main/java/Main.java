@@ -25,7 +25,7 @@ public class Main extends Application {
 
     public static void main(String [] args) throws IOException {
 
-       Poi_read p = new Poi_read("D:\\Parus8.xls");
+       Poi_read p = new Poi_read();
 //      p.writeIntoExcelStipendiaYear();
         Application.launch(Main.class, (java.lang.String[])null);
 
