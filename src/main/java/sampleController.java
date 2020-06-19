@@ -106,6 +106,12 @@ public class sampleController {
             pathToNewFile = pathToFile[0];
             pathToExelFile = pathToFile[1];
             workPane.setVisible(pathToFile[0] == null);
+            otchot1.setVisible(false);
+            otchot2.setVisible(false);
+            otchot3.setVisible(false);
+            otchot4.setVisible(false);
+            tableEmpty.setVisible(true);
+            stipMesaz.setItems(null);
         });
 
         selectTyprOtchot.setOnAction(e -> {

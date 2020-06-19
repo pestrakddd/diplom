@@ -71,8 +71,6 @@ public class openFileController {
             stage.setTitle("Выберете файл");
             stage.setScene(new Scene(FXMLLoader.load(openFileController.class.getResource("fxml/fileOpen.fxml"))));
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setMinHeight(400);
-            stage.setMinWidth(500);
             stage.setResizable(false);
             stage.showAndWait();
         } catch (IOException e) {
