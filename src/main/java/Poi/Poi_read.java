@@ -214,6 +214,11 @@ public class Poi_read {
         }
     }
 
+    public void writeIntoExcelStipendiaMount(String path, ArrayList<godovaiaStipendia> list, String mount) {
+
+    }
+
+
     public void readFromExcel() throws IOException {
 
 //        String s1;
@@ -398,10 +403,10 @@ public class Poi_read {
         return stipendia_zaMesazs;
     }
 
-    public void readToStipZamesaz(String path, int indexMount) throws IOException {
+    public  ArrayList<godovaiaStipendia> readToStipZamesaz(String path, int indexMount) throws IOException {
 
         ArrayList<StipendiaZaGod> stipendiaZaGods = new ArrayList<>();
-//        ArrayList <Stipendia_zaMesaz> stipendia_zaMesazs = new ArrayList<>();
+        ArrayList<godovaiaStipendia> godovaiaStipendias = new ArrayList<>();
 
         FileInputStream fis = new FileInputStream(new File(path));
         HSSFRow row;
@@ -496,25 +501,70 @@ public class Poi_read {
                 }
             }
             fis.close();
-            stipendiaZaGods.remove(stipendiaZaGods.size() - 1);
-//            stipendiaZaGods.stream().forEach(el -> {
-////                stipendia_zaMesazs.add(new Stipendia_zaMesaz());
-////                stipendia_zaMesazs.get(stipendia_zaMesazs.size() - 1).setNumberPP(el.getNumberPP());
-////                stipendia_zaMesazs.get(stipendia_zaMesazs.size() - 1).setFio(el.getFIO());
-////
-////                stipendia_zaMesazs.get(stipendia_zaMesazs.size() - 1).setStatusStudent(el.getStatusStudent().equals("целевик")? "ц" : "о");
-////                stipendia_zaMesazs.get(stipendia_zaMesazs.size() - 1).setSummaR(el.getManyForAnvar() +
-////                        el.getManyForAprel() + el.getManyForaugust() + el.getManyForDekabr() + el.getManyForFevral() + el.getManyForiul() + el.getManyForiun() + el.getManyForMart() +
-////                        el.getManyForNoabr() + el.getManyForOkt() + el.getManyForSentabr() + el.getManyForMai());
-////
-////                stipendia_zaMesazs.get(stipendia_zaMesazs.size() - 1).setMounts((el.getManyForAnvar() != 0? "январь\n" : "") + (el.getManyForFevral() != 0? "февраль\n" : "") + (el.getManyForMart() != 0? "март\n" : "") +
-////                        (el.getManyForAprel() != 0? "апрель\n" : "") + (el.getManyForMai() != 0? "май\n" : "") + (el.getManyForiun() != 0? "июнь\n" : "") +(el.getManyForiul() != 0? "июль\n" : "" )+ (el.getManyForaugust() != 0? "август\n" : "") +
-////                        (el.getManyForSentabr() != 0? "сентябрь\n" : "" ) +  (el.getManyForOkt() != 0? "октябрь\n" : "") + (el.getManyForNoabr() != 0? "ноябрь\n" : "") + (el.getManyForDekabr() != 0? "декабрь" : "") );
-////            }); ---------------------------------------------------------------------------------------------------------------------------");
-//        }
-//        return null;
-//            return null;
+
         }
+        stipendiaZaGods.remove(stipendiaZaGods.size() - 1);
+        stipendiaZaGods.stream().forEach(el -> {
+            godovaiaStipendias.add(new godovaiaStipendia());
+            godovaiaStipendias.get(godovaiaStipendias.size() - 1).setFIO(el.getFIO());
+            godovaiaStipendias.get(godovaiaStipendias.size() - 1).setNumberPP(el.getNumberPP());
+            godovaiaStipendias.get(godovaiaStipendias.size() - 1).setStatusSt(el.getStatusStudent().equals("целевик") ? "ц" : "о");
+            switch (indexMount) {
+                case 0:
+                    godovaiaStipendias.get(godovaiaStipendias.size() - 1).setSumma(el.getManyForAnvar());
+                    break;
+                case 1:
+                    godovaiaStipendias.get(godovaiaStipendias.size() - 1).setSumma(el.getManyForFevral());
+                    break;
+                case 2:
+                    godovaiaStipendias.get(godovaiaStipendias.size() - 1).setSumma(el.getManyForMart());
+                    break;
+                case 3:
+                    godovaiaStipendias.get(godovaiaStipendias.size() - 1).setSumma(el.getManyForAprel());
+                    break;
+                case 4:
+                    godovaiaStipendias.get(godovaiaStipendias.size() - 1).setSumma(el.getManyForMai());
+                    break;
+                case 5:
+                    godovaiaStipendias.get(godovaiaStipendias.size() - 1).setSumma(el.getManyForiun());
+                    break;
+                case 6:
+                    godovaiaStipendias.get(godovaiaStipendias.size() - 1).setSumma(el.getManyForiul());
+                    break;
+                case 7:
+                    godovaiaStipendias.get(godovaiaStipendias.size() - 1).setSumma(el.getManyForaugust());
+                    break;
+                case 8:
+                    godovaiaStipendias.get(godovaiaStipendias.size() - 1).setSumma(el.getManyForSentabr());
+                    break;
+                case 9:
+                    godovaiaStipendias.get(godovaiaStipendias.size() - 1).setSumma(el.getManyForOkt());
+                    break;
+                case 10:
+                    godovaiaStipendias.get(godovaiaStipendias.size() - 1).setSumma(el.getManyForNoabr());
+                    break;
+                case 11:
+                    godovaiaStipendias.get(godovaiaStipendias.size() - 1).setSumma(el.getManyForDekabr());
+                    break;
+            }
+        });
+
+        ArrayList<godovaiaStipendia> position = new ArrayList<>();
+        godovaiaStipendias.stream().forEach(el-> {
+            if (el.getSumma() == 0) {
+                position.add(el);
+            }
+        });
+        godovaiaStipendias.removeAll(position);
+
+        godovaiaStipendias.stream().forEach(el -> {
+            System.out.println(el.getNumberPP());
+            System.out.println(el.getFIO());
+            System.out.println(el.getStatusSt());
+            System.out.println(el.getSumma());
+            System.out.println();
+        });
+        return godovaiaStipendias;
     }
 }
 
