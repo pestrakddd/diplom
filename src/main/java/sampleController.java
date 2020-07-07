@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
@@ -88,6 +89,34 @@ public class sampleController extends Component {
     private Label lab;
 
     @FXML
+    private TableView<?> tableReestr;
+    @FXML
+    private TableColumn<?, ?> columndolchnost;
+    @FXML
+    private TableColumn<?, ?> columnNumberPP;
+    @FXML
+    private TableColumn<?, ?> columnNameOrFIO;
+    @FXML
+    private TableColumn<?, ?> columnViewTruda;
+    @FXML
+    private TableColumn<?, ?> columnFZPDays;
+    @FXML
+    private TableColumn<?, ?> columnFZPSumma;
+    @FXML
+    private TableColumn<?, ?> columnSochStraxDays;
+    @FXML
+    private TableColumn<?, ?> columnSochStraxSumma;
+    @FXML
+    private TableColumn<?, ?> columnStatus;
+    @FXML
+    private TableColumn<?, ?> columnPeriod;
+
+    @FXML
+    private Label lblYear;
+    @FXML
+    private TextField TF_Year;
+
+    @FXML
     private TableView<godovaiaStipendia> stipZaMesaz;
     @FXML
     private TableColumn<godovaiaStipendia, Integer> mesST_numberPP;
@@ -97,6 +126,40 @@ public class sampleController extends Component {
     private TableColumn<godovaiaStipendia, Integer> mesST_FIO;
     @FXML
     private TableColumn<godovaiaStipendia, String> mesST_summa;
+
+    @FXML
+    private AnchorPane EGE;
+    @FXML
+    private TableView<?> otEGE;
+    @FXML
+    private TableColumn<?, ?> NameSchool;
+    @FXML
+    private TableColumn<?, ?> RUssianLang;
+    @FXML
+    private TableColumn<?, ?> MatemProfil;
+    @FXML
+    private TableColumn<?, ?> MatemBas;
+    @FXML
+    private TableColumn<?, ?> Physik;
+    @FXML
+    private TableColumn<?, ?> Xummi;
+    @FXML
+    private TableColumn<?, ?> informatika;
+    @FXML
+    private TableColumn<?, ?> biologia;
+    @FXML
+    private TableColumn<?, ?> History;
+    @FXML
+    private TableColumn<?, ?> Angliiskii;
+    @FXML
+    private TableColumn<?, ?> obshestvo;
+    @FXML
+    private TableColumn<?, ?> literatura;
+
+    @FXML
+    private TableColumn<?, ?> georafia;
+
+    //TODO Functioanal 299 line
 
     String pathToNewFile = null;
     String pathToOpenFile = null;
@@ -117,6 +180,9 @@ public class sampleController extends Component {
 
     @FXML
     void initialize() {
+        lblYear.setVisible(false);
+        TF_Year.setVisible(false);
+
         ObservableList<String> mounts = FXCollections.observableArrayList("Январь", "Февраль", "Март", "Апрель",
                                                                                 "Май", "Июнь", "Июль", "Август",
                                                                                 "Сентябрь", "Октябрь", "Ноябрь", "Декабрь");
@@ -164,22 +230,38 @@ public class sampleController extends Component {
                     index = 11;
                     break;
             }
-            if(selectTyprOtchot.getValue().equals("Выплата стипендии за месяц")) {
-                indexMount = index;
-                try {
-                    Poi_read poi_read1 = new Poi_read();
-                    zapolneniTablSoStipZaMesaz(poi_read1.readToStipZamesaz(pathToExelFile, index));
+            switch (selectTyprOtchot.getValue()) {
+                case "Выплата стипендии за месяц":
+                    indexMount = index;
+                    try {
+                        Poi_read poi_read1 = new Poi_read();
+                        zapolneniTablSoStipZaMesaz(poi_read1.readToStipZamesaz(pathToExelFile, index));
 
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    break;
+                case "Реестр":
+//                    счиывем данные из файла
+//                    indexMount = index;
+//                    try {
+//                        Poi_read poi_read1 = new Poi_read();
+//                        zapolneniTablSoStipZaMesaz(poi_read1.readToStipZamesaz(pathToExelFile, index));
+//
+//                    } catch (IOException ex) {
+//                        ex.printStackTrace();
+//                    }
+                    break;
             }
         });
 
         addOtchot.setOnAction(e->{
 
             switch (selectTyprOtchot.getValue()) {
-                case "?" :
+                case "Реестр" :
+                    //считываем данные из файла
+                    //
+                    //
                     break;
                 case "Выплата стипендии за месяц" :
                     try {
@@ -193,7 +275,6 @@ public class sampleController extends Component {
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
-
                     break;
                 case "Годовая выплата стипендии" :
                     try {
@@ -217,7 +298,13 @@ public class sampleController extends Component {
                         ex.printStackTrace();
                     }
                     break;
-                case "Месячный отчет по фонду заработной платы" :
+                case "ЕГЭ" :
+                    Poi_read poi_read = new Poi_read();
+                    try {
+                        poi_read.readToEGE(pathToExelFile);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                     break;
                 default:
                     JFrame topFrame = (JFrame)SwingUtilities.getWindowAncestor(this);
@@ -231,9 +318,10 @@ public class sampleController extends Component {
         otchot2.setVisible(false);
         otchot3.setVisible(false);
         otchot4.setVisible(false);
+        EGE.setVisible(false);
         tableEmpty.setVisible(true);
 
-        ObservableList<String> typeOtchot = FXCollections.observableArrayList("Выплата стипендии за месяц", "Годовая выплата стипендии");
+        ObservableList<String> typeOtchot = FXCollections.observableArrayList("Выплата стипендии за месяц", "Годовая выплата стипендии", "Реестр", "ЕГЭ");
         selectTyprOtchot.setItems(typeOtchot);
 
         newFile.setOnAction(e -> {
@@ -245,6 +333,7 @@ public class sampleController extends Component {
             otchot2.setVisible(false);
             otchot3.setVisible(false);
             otchot4.setVisible(false);
+            EGE.setVisible(false);
             tableEmpty.setVisible(true);
             stipMesaz.setItems(null);
         });
@@ -305,12 +394,29 @@ public class sampleController extends Component {
                         ex.printStackTrace();
                     }
                     break;
-                case "Месячный отчет по фонду заработной платы" :
+                case "Реестр":
+                    otchot1.setVisible(true);
+                    otchot2.setVisible(false);
+                    otchot3.setVisible(false);
+                    otchot4.setVisible(false);
+                    tableEmpty.setVisible(false);
+                    lab.setText("Месяц");
+                    selectTimes.setValue("Январь");
+                    selectTimes.setItems(mounts);
+                    break;
+                case "ЕГЭ":
+                    EGE.setVisible(true);
                     otchot1.setVisible(false);
                     otchot2.setVisible(false);
                     otchot3.setVisible(false);
-                    otchot4.setVisible(true);
+                    otchot4.setVisible(false);
                     tableEmpty.setVisible(false);
+                    Poi_read poi_read = new Poi_read();
+                    try {
+                        poi_read.readToEGE("C:\\Users\\Admin\\Desktop\\eges.xlsx");
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                     break;
             }
         });
