@@ -605,167 +605,188 @@ public class Poi_read {
     }
 
     public  ArrayList<EGE> readToEGE(String path) throws IOException {
+        ArrayList <EGE> ege = new ArrayList<>();
+        try {
 
-        ArrayList<EGE> ege = new ArrayList<>();
+            FileInputStream fis = new FileInputStream(new File(path));
+            HSSFRow row;
+            HSSFWorkbook workbook = new HSSFWorkbook(fis);
+            HSSFSheet spreadsheet = null;
+            System.out.println(workbook.getNumberOfSheets());
+            for (int i = 0; workbook.getNumberOfSheets() > i; i++) {
+                spreadsheet = workbook.getSheetAt(i);
+                Iterator<Row> rowIterator = spreadsheet.iterator();
 
-        FileInputStream fis = new FileInputStream(new File(path));
-        XSSFRow row;
-        XSSFWorkbook workbook = new XSSFWorkbook(fis);
+                boolean start = workbook.getSheetAt(i).getPhysicalNumberOfRows() > 0;
 
-        XSSFSheet spreadsheet = null;
-        for (int i = 0; workbook.getNumberOfSheets() > i; i++) {
-            if (i > 0) break;
-            spreadsheet = workbook.getSheetAt(i);
-            Iterator<Row> rowIterator = spreadsheet.iterator();
+                rowIterator.next();
+                while (start) {
+                    ege.add(new EGE());
+                    ArrayList <Predmet> predmet = new ArrayList<>();
+                    start = rowIterator.hasNext();
+                    row = (HSSFRow) rowIterator.next();
+                    Iterator<Cell> cellIterator = row.cellIterator();
 
-            boolean start = workbook.getSheetAt(i).getPhysicalNumberOfRows() > 0;
+                    int numColumn = 0;
+                    while (cellIterator.hasNext()) {
+                        Cell cell = cellIterator.next();
+                        switch(numColumn) {
+                            case 1:
+                                predmet.add(new Predmet());
+                                predmet.get(predmet.size() - 1).setNamePredmen("Русский язык");
+                                break;
+                            case 5:
+                                predmet.add(new Predmet());
+                                predmet.get(predmet.size() - 1).setNamePredmen("Математика профиль");
+                                break;
+                            case 9:
+                                predmet.add(new Predmet());
+                                predmet.get(predmet.size() - 1).setNamePredmen("Математика базовая");
+                                break;
+                            case 13:
+                                predmet.add(new Predmet());
+                                predmet.get(predmet.size() - 1).setNamePredmen("Физика");
+                                break;
+                            case 17:
+                                predmet.add(new Predmet());
+                                predmet.get(predmet.size() - 1).setNamePredmen("Химия");
+                                break;
+                            case 21:
+                                predmet.add(new Predmet());
+                                predmet.get(predmet.size() - 1).setNamePredmen("Информатика и ИТК");
+                                break;
+                            case 25:
+                                predmet.add(new Predmet());
+                                predmet.get(predmet.size() - 1).setNamePredmen("Биология");
+                                break;
+                            case 29:
+                                predmet.add(new Predmet());
+                                predmet.get(predmet.size() - 1).setNamePredmen("История");
+                                break;
+                            case 33:
+                                predmet.add(new Predmet());
+                                predmet.get(predmet.size() - 1).setNamePredmen("География");
+                                break;
+                            case 37:
+                                predmet.add(new Predmet());
+                                predmet.get(predmet.size() - 1).setNamePredmen("Английский язык");
+                                break;
+                            case 41:
+                                predmet.add(new Predmet());
+                                predmet.get(predmet.size() - 1).setNamePredmen("Обществознание");
+                                break;
+                            case 45:
+                                predmet.add(new Predmet());
+                                predmet.get(predmet.size() - 1).setNamePredmen("Литература");
+                                break;
+                        }
 
-            rowIterator.next();
-            while (start) {
-                ArrayList<Predmet> predmet = new ArrayList<>();
-                ege.add(new EGE());
-                start = rowIterator.hasNext();
-                row = (XSSFRow) rowIterator.next();
-                Iterator<Cell> cellIterator = row.cellIterator();
 
-                int numColumn = 0;
-                while (cellIterator.hasNext()) {
+                        switch (cell.getCellType()) {
+                            case Cell.CELL_TYPE_NUMERIC:
+                                switch(numColumn) {
+                                    case 1:
+                                    case 5:
+                                    case 9:
+                                    case 13:
+                                    case 17:
+                                    case 21:
+                                    case 25:
+                                    case 29:
+                                    case 33:
+                                    case 37:
+                                    case 41:
+                                    case 45:
+                                        predmet.get(predmet.size() - 1).setCount2(cell.getNumericCellValue());
+                                        break;
+                                    case 2:
+                                    case 6:
+                                    case 10:
+                                    case 14:
+                                    case 18:
+                                    case 22:
+                                    case 26:
+                                    case 30:
+                                    case 34:
+                                    case 38:
+                                    case 42:
+                                    case 46:
+                                        predmet.get(predmet.size() - 1).setCount3(cell.getNumericCellValue());
+                                        break;
+                                    case 3:
+                                    case 7:
+                                    case 11:
+                                    case 15:
+                                    case 19:
+                                    case 23:
+                                    case 27:
+                                    case 31:
+                                    case 35:
+                                    case 39:
+                                    case 43:
+                                    case 47:
+                                        predmet.get(predmet.size() - 1).setCount4(cell.getNumericCellValue());
+                                        break;
+                                    case 4:
+                                    case 8:
+                                    case 12:
+                                    case 16:
+                                    case 20:
+                                    case 24:
+                                    case 28:
+                                    case 32:
+                                    case 36:
+                                    case 40:
+                                    case 44:
+                                    case 49:
+                                        predmet.get(predmet.size() - 1).setCount5(cell.getNumericCellValue());
+                                        break;
+                                }
+                                break;
 
-                    switch (numColumn) {
-                        case 1:
-                            predmet.add(new Predmet());
-                            predmet.get(predmet.size() - 1).setNamePredmen("Русский язык");
-                            break;
-                        case 5:
-                            predmet.add(new Predmet());
-                            predmet.get(predmet.size() - 1).setNamePredmen("Математика профильная");
-                            break;
-                        case 9:
-                            predmet.add(new Predmet());
-                            predmet.get(predmet.size() - 1).setNamePredmen("Математика базовая");
-                            break;
-                        case 13:
-                            predmet.add(new Predmet());
-                            predmet.get(predmet.size() - 1).setNamePredmen("Физика");
-                            break;
-                        case 17:
-                            predmet.add(new Predmet());
-                            predmet.get(predmet.size() - 1).setNamePredmen("Химия");
-                            break;
-                        case 21:
-                            predmet.add(new Predmet());
-                            predmet.get(predmet.size() - 1).setNamePredmen("Информатика и ИТК");
-                            break;
-                        case 25:
-                            predmet.add(new Predmet());
-                            predmet.get(predmet.size() - 1).setNamePredmen("Биология");
-                            break;
-                        case 29:
-                            predmet.add(new Predmet());
-                            predmet.get(predmet.size() - 1).setNamePredmen("История");
-                            break;
-                        case 33:
-                            predmet.add(new Predmet());
-                            predmet.get(predmet.size() - 1).setNamePredmen("География");
-                            break;
-                        case 37:
-                            predmet.add(new Predmet());
-                            predmet.get(predmet.size() - 1).setNamePredmen("Английский язык");
-                            break;
-                        case 41:
-                            predmet.add(new Predmet());
-                            predmet.get(predmet.size() - 1).setNamePredmen("Обществознание");
-                            break;
-                        case 45:
-                            predmet.add(new Predmet());
-                            predmet.get(predmet.size() - 1).setNamePredmen("Литература");
-                            break;
+                            case Cell.CELL_TYPE_STRING:
+                                if (numColumn == 0);
+                                ege.get(ege.size() - 1).setNameSchool(cell.getStringCellValue());
+                                break;
+                            case Cell.CELL_TYPE_FORMULA:
+                                break;
+                            default:
+                                break;
+                        }
+                        numColumn++;
                     }
-                    Cell cell = cellIterator.next();
-
-                    switch (cell.getCellType()) {
-                        case Cell.CELL_TYPE_NUMERIC:
-                            switch (numColumn) {
-                                case 1:
-                                case 5:
-                                case 9:
-                                case 13:
-                                case 17:
-                                case 21:
-                                case 25:
-                                case 29:
-                                case 33:
-                                case 37:
-                                case 41:
-                                case 45:
-                                    predmet.get(predmet.size() - 1).setCount2(cell.getNumericCellValue());
-                                    break;
-                                case 2:
-                                case 6:
-                                case 10:
-                                case 14:
-                                case 18:
-                                case 22:
-                                case 26:
-                                case 30:
-                                case 34:
-                                case 38:
-                                case 42:
-                                case 46:
-                                    predmet.get(predmet.size() - 1).setCount3(cell.getNumericCellValue());
-                                    break;
-                                case 3:
-                                case 7:
-                                case 11:
-                                case 15:
-                                case 19:
-                                case 23:
-                                case 27:
-                                case 31:
-                                case 35:
-                                case 39:
-                                case 43:
-                                case 47:
-                                    predmet.get(predmet.size() - 1).setCount4(cell.getNumericCellValue());
-                                    break;
-                                case 4:
-                                case 8:
-                                case 12:
-                                case 16:
-                                case 20:
-                                case 24:
-                                case 28:
-                                case 32:
-                                case 36:
-                                case 40:
-                                case 44:
-                                case 48:
-                                    predmet.get(predmet.size() - 1).setCount5(cell.getNumericCellValue());
-                                    break;
-                            }
-                            break;
-
-                        case Cell.CELL_TYPE_STRING:
-                            switch (numColumn) {
-                                case 0:
-                                    ege.get(ege.size() - 1).setNameSchool(cell.getStringCellValue());
-                                    break;
-                            }
-                            break;
-                        default:
-                            start = false;
-                            break;
-                    }
-
+                    ege.get(ege.size() - 1).setPredmets(predmet);
                 }
-                ege.get(ege.size() - 1).setPredmets(predmet);
-                numColumn++;
-            }
-            fis.close();
+                fis.close();
 
+            }
+            ArrayList <EGE> ege1 = new ArrayList<>();
+
+
+            ege.stream().forEach(el -> {
+                if (el.getNameSchool() != null) {
+                    ege1.add(el);
+                }
+            });
+            ege1.forEach(el -> {
+                System.out.println(el.nameSchool);
+            });
+
+            return ege1;
+        } catch (Exception e) {
+            ArrayList <EGE> ege1 = new ArrayList<>();
+
+
+            ege.stream().forEach(el -> {
+                if (el.getNameSchool() != null) {
+                    ege1.add(el);
+                }
+            });
+            return ege1;
         }
-        System.out.println(ege.size());
-        return ege;
+
+
+
     }
 
     public void readToReestr (String path) {

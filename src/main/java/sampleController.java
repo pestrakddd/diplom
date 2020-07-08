@@ -2,10 +2,10 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicReference;
 
-import Poi.Poi_read;
-import Poi.Stipendia_zaMesaz;
-import Poi.godovaiaStipendia;
+import Poi.*;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -130,34 +130,298 @@ public class sampleController extends Component {
     @FXML
     private AnchorPane EGE;
     @FXML
-    private TableView<?> otEGE;
+    private TableView<?> EGEOt;
+
     @FXML
     private TableColumn<?, ?> NameSchool;
+
     @FXML
     private TableColumn<?, ?> RUssianLang;
+
+    @FXML
+    private TableColumn<?, ?> _2RussianL;
+
+    @FXML
+    private TableColumn<?, ?> _3RussianL;
+
+    @FXML
+    private TableColumn<?, ?> _4RussianL;
+
+    @FXML
+    private TableColumn<?, ?> _5RussianL;
+
+    @FXML
+    private TableColumn<?, ?> RussianLObsKOL;
+
+    @FXML
+    private TableColumn<?, ?> RussianLYspevaemosti;
+
+    @FXML
+    private TableColumn<?, ?> RussianLKatZN;
+
     @FXML
     private TableColumn<?, ?> MatemProfil;
+
+    @FXML
+    private TableColumn<?, ?> _2Matpr;
+
+    @FXML
+    private TableColumn<?, ?> _3Matpr;
+
+    @FXML
+    private TableColumn<?, ?> _4Matpr;
+
+    @FXML
+    private TableColumn<?, ?> _5Matpr;
+
+    @FXML
+    private TableColumn<?, ?> MatprObsee;
+
+    @FXML
+    private TableColumn<?, ?> _Matpryspevae;
+
+    @FXML
+    private TableColumn<?, ?> kazhZN_Matpr;
+
     @FXML
     private TableColumn<?, ?> MatemBas;
+
+    @FXML
+    private TableColumn<?, ?> MatBaz2;
+
+    @FXML
+    private TableColumn<?, ?> MatBaz3;
+
+    @FXML
+    private TableColumn<?, ?> MatBaz4;
+
+    @FXML
+    private TableColumn<?, ?> MatBaz5;
+
+    @FXML
+    private TableColumn<?, ?> MatBazObsee;
+
+    @FXML
+    private TableColumn<?, ?> MatBazyspev;
+
+    @FXML
+    private TableColumn<?, ?> MatBazkachZn;
+
     @FXML
     private TableColumn<?, ?> Physik;
+
+    @FXML
+    private TableColumn<?, ?> physik2;
+
+    @FXML
+    private TableColumn<?, ?> physik3;
+
+    @FXML
+    private TableColumn<?, ?> physik4;
+
+    @FXML
+    private TableColumn<?, ?> physik5;
+
+    @FXML
+    private TableColumn<?, ?> physikObsee;
+
+    @FXML
+    private TableColumn<?, ?> physikYspev;
+
+    @FXML
+    private TableColumn<?, ?> physikKatch;
+
     @FXML
     private TableColumn<?, ?> Xummi;
+
+    @FXML
+    private TableColumn<?, ?> Xiimia2;
+
+    @FXML
+    private TableColumn<?, ?> Xiimia3;
+
+    @FXML
+    private TableColumn<?, ?> Xiimia4;
+
+    @FXML
+    private TableColumn<?, ?> Xiimia5;
+
+    @FXML
+    private TableColumn<?, ?> Xiimiaobsee;
+
+    @FXML
+    private TableColumn<?, ?> Xiimiayspevaem;
+
+    @FXML
+    private TableColumn<?, ?> XiimiakachZn;
+
     @FXML
     private TableColumn<?, ?> informatika;
+
+    @FXML
+    private TableColumn<?, ?> unfa2;
+
+    @FXML
+    private TableColumn<?, ?> unfa3;
+
+    @FXML
+    private TableColumn<?, ?> unfa4;
+
+    @FXML
+    private TableColumn<?, ?> unfa5;
+
+    @FXML
+    private TableColumn<?, ?> unfaObsee;
+
+    @FXML
+    private TableColumn<?, ?> unfaYspevaem;
+
+    @FXML
+    private TableColumn<?, ?> unfakachest;
+
     @FXML
     private TableColumn<?, ?> biologia;
+
+    @FXML
+    private TableColumn<?, ?> biolog2;
+
+    @FXML
+    private TableColumn<?, ?> biolog3;
+
+    @FXML
+    private TableColumn<?, ?> biolog4;
+
+    @FXML
+    private TableColumn<?, ?> biolo5;
+
+    @FXML
+    private TableColumn<?, ?> biologObsee;
+
+    @FXML
+    private TableColumn<?, ?> biologYspevaemost;
+
+    @FXML
+    private TableColumn<?, ?> biologKach;
+
     @FXML
     private TableColumn<?, ?> History;
+
+    @FXML
+    private TableColumn<?, ?> histor2;
+
+    @FXML
+    private TableColumn<?, ?> histor3;
+
+    @FXML
+    private TableColumn<?, ?> histor4;
+
+    @FXML
+    private TableColumn<?, ?> histor5;
+
+    @FXML
+    private TableColumn<?, ?> historObsee;
+
+    @FXML
+    private TableColumn<?, ?> historYspevaemosti;
+
+    @FXML
+    private TableColumn<?, ?> historKachestvo;
+
+    @FXML
+    private TableColumn<?, ?> georafia;
+
+    @FXML
+    private TableColumn<?, ?> georaf2;
+
+    @FXML
+    private TableColumn<?, ?> georaf3;
+
+    @FXML
+    private TableColumn<?, ?> georaf4;
+
+    @FXML
+    private TableColumn<?, ?> georaf5;
+
+    @FXML
+    private TableColumn<?, ?> georafobsee;
+
+    @FXML
+    private TableColumn<?, ?> georafYspev;
+
+    @FXML
+    private TableColumn<?, ?> georafKache;
+
     @FXML
     private TableColumn<?, ?> Angliiskii;
+
+    @FXML
+    private TableColumn<?, ?> angl2;
+
+    @FXML
+    private TableColumn<?, ?> angl3;
+
+    @FXML
+    private TableColumn<?, ?> angl4;
+
+    @FXML
+    private TableColumn<?, ?> angl5;
+
+    @FXML
+    private TableColumn<?, ?> anglObsee;
+
+    @FXML
+    private TableColumn<?, ?> anglYspevae;
+
+    @FXML
+    private TableColumn<?, ?> anglkachestv;
+
     @FXML
     private TableColumn<?, ?> obshestvo;
+
+    @FXML
+    private TableColumn<?, ?> Obsestvo2;
+
+    @FXML
+    private TableColumn<?, ?> Obsestvo3;
+
+    @FXML
+    private TableColumn<?, ?> Obsestvo4;
+
+    @FXML
+    private TableColumn<?, ?> Obsestvo5;
+
+    @FXML
+    private TableColumn<?, ?> ObsestvoObsee;
+
+    @FXML
+    private TableColumn<?, ?> ObsestvoYspev;
+
+    @FXML
+    private TableColumn<?, ?> ObsestvoKatche;
+
     @FXML
     private TableColumn<?, ?> literatura;
 
     @FXML
-    private TableColumn<?, ?> georafia;
+    private TableColumn<?, ?> liter2;
+
+    @FXML
+    private TableColumn<?, ?> liter3;
+
+    @FXML
+    private TableColumn<?, ?> liter4;
+
+    @FXML
+    private TableColumn<?, ?> liter5;
+
+    @FXML
+    private TableColumn<?, ?> literObsee;
+
+    @FXML
+    private TableColumn<?, ?> literyspeva;
+
+    @FXML
+    private TableColumn<?, ?> literKat;
 
     //TODO Functioanal 299 line
 
@@ -412,11 +676,147 @@ public class sampleController extends Component {
                     otchot4.setVisible(false);
                     tableEmpty.setVisible(false);
                     Poi_read poi_read = new Poi_read();
+                    ArrayList <EGE> eges = new ArrayList<>();
                     try {
-                        poi_read.readToEGE("C:\\Users\\Admin\\Desktop\\eges.xlsx");
+                        eges =  poi_read.readToEGE(pathToExelFile);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
+                    ArrayList <EGEOtcot> egeOtcots = new ArrayList<>();
+                    eges.forEach(el -> {
+                        egeOtcots.add(new EGEOtcot());
+                        ArrayList<Predmet> predmets = el.getPredmets();
+                        egeOtcots.get(egeOtcots.size() - 1).setNameSchool(el.getNameSchool());
+                        egeOtcots.get(egeOtcots.size() - 1).setRus2(predmets.get(0).getCount2());
+                        egeOtcots.get(egeOtcots.size() - 1).setRus3(predmets.get(0).getCount3());
+                        egeOtcots.get(egeOtcots.size() - 1).setRus4(predmets.get(0).getCount4());
+                        egeOtcots.get(egeOtcots.size() - 1).setRus5(predmets.get(0).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setRusObs(predmets.get(0).getCount2() + predmets.get(0).getCount3() + predmets.get(0).getCount4() + predmets.get(0).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setRusYsp(((predmets.get(0).getCount3() + predmets.get(0).getCount4() + predmets.get(0).getCount5()) * 100) /
+                                (predmets.get(0).getCount2() + predmets.get(0).getCount3() + predmets.get(0).getCount4() + predmets.get(0).getCount5()));
+
+                        egeOtcots.get(egeOtcots.size() - 1).setRusKat(((predmets.get(0).getCount4() + predmets.get(0).getCount5()) * 100) /
+                                (predmets.get(0).getCount2() + predmets.get(0).getCount3() + predmets.get(0).getCount4() + predmets.get(0).getCount5()));
+
+
+                        egeOtcots.get(egeOtcots.size() - 1).setMatPr2(predmets.get(1).getCount2());
+                        egeOtcots.get(egeOtcots.size() - 1).setMatPr3(predmets.get(1).getCount3());
+                        egeOtcots.get(egeOtcots.size() - 1).setMatPr4(predmets.get(1).getCount4());
+                        egeOtcots.get(egeOtcots.size() - 1).setMatPr5(predmets.get(1).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setMatPrObs(predmets.get(1).getCount2() + predmets.get(1).getCount3() + predmets.get(1).getCount4() + predmets.get(1).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setMatPrYsp(((predmets.get(1).getCount3() + predmets.get(1).getCount4() + predmets.get(1).getCount5()) * 100 )/
+                                (predmets.get(1).getCount2() + predmets.get(1).getCount3() + predmets.get(1).getCount4() + predmets.get(1).getCount5()));
+                        egeOtcots.get(egeOtcots.size() - 1).setRusKat(((predmets.get(1).getCount4() + predmets.get(1).getCount5()) * 100) /
+                                (predmets.get(1).getCount2() + predmets.get(1).getCount3() + predmets.get(1).getCount4() + predmets.get(1).getCount5()));
+
+                        egeOtcots.get(egeOtcots.size() - 1).setMatBas2(predmets.get(2).getCount2());
+                        egeOtcots.get(egeOtcots.size() - 1).setMatBas3(predmets.get(2).getCount3());
+                        egeOtcots.get(egeOtcots.size() - 1).setMatBas4(predmets.get(2).getCount4());
+                        egeOtcots.get(egeOtcots.size() - 1).setMatBas5(predmets.get(2).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setMatBasObs(predmets.get(2).getCount2() + predmets.get(2).getCount3() + predmets.get(2).getCount4() + predmets.get(2).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setMatBasYsp(((predmets.get(2).getCount3() + predmets.get(2).getCount4() + predmets.get(2).getCount5()) * 100) /
+                                (predmets.get(2).getCount2() + predmets.get(2).getCount3() + predmets.get(2).getCount4() + predmets.get(2).getCount5()));
+                        egeOtcots.get(egeOtcots.size() - 1).setRusKat(((predmets.get(2).getCount4() + predmets.get(2).getCount5()) * 100 )/
+                                (predmets.get(2).getCount2() + predmets.get(2).getCount3() + predmets.get(2).getCount4() + predmets.get(2).getCount5()));
+
+                        egeOtcots.get(egeOtcots.size() - 1).setPhysik2(predmets.get(3).getCount2());
+                        egeOtcots.get(egeOtcots.size() - 1).setPhysik3(predmets.get(3).getCount3());
+                        egeOtcots.get(egeOtcots.size() - 1).setPhysik4(predmets.get(3).getCount4());
+                        egeOtcots.get(egeOtcots.size() - 1).setPhysik5(predmets.get(3).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setPhysikObs(predmets.get(3).getCount2() + predmets.get(3).getCount3() + predmets.get(3).getCount4() + predmets.get(3).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setPhysikYsp(((predmets.get(3).getCount3() + predmets.get(3).getCount4() + predmets.get(3).getCount5()) * 100) /
+                                (predmets.get(3).getCount2() + predmets.get(3).getCount3() + predmets.get(3).getCount4() + predmets.get(3).getCount5()));
+                        egeOtcots.get(egeOtcots.size() - 1).setRusKat(((predmets.get(3).getCount4() + predmets.get(3).getCount5()) * 100) /
+                                (predmets.get(3).getCount2() + predmets.get(3).getCount3() + predmets.get(3).getCount4() + predmets.get(3).getCount5()));
+
+                        egeOtcots.get(egeOtcots.size() - 1).setXummi2(predmets.get(4).getCount2());
+                        egeOtcots.get(egeOtcots.size() - 1).setXummi3(predmets.get(4).getCount3());
+                        egeOtcots.get(egeOtcots.size() - 1).setXummi4(predmets.get(4).getCount4());
+                        egeOtcots.get(egeOtcots.size() - 1).setXummi5(predmets.get(4).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setXummiObs(predmets.get(4).getCount2() + predmets.get(4).getCount3() + predmets.get(4).getCount4() + predmets.get(4).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setXummiYsp(((predmets.get(4).getCount3() + predmets.get(4).getCount4() + predmets.get(4).getCount5()) * 100 )/
+                                (predmets.get(4).getCount2() + predmets.get(4).getCount3() + predmets.get(4).getCount4() + predmets.get(4).getCount5()));
+                        egeOtcots.get(egeOtcots.size() - 1).setRusKat(((predmets.get(4).getCount4() + predmets.get(4).getCount5()) * 100) /
+                                (predmets.get(4).getCount2() + predmets.get(4).getCount3() + predmets.get(4).getCount4() + predmets.get(4).getCount5()));
+
+                        egeOtcots.get(egeOtcots.size() - 1).setInfa2(predmets.get(5).getCount2());
+                        egeOtcots.get(egeOtcots.size() - 1).setInfa3(predmets.get(5).getCount3());
+                        egeOtcots.get(egeOtcots.size() - 1).setInfa4(predmets.get(5).getCount4());
+                        egeOtcots.get(egeOtcots.size() - 1).setInfa5(predmets.get(5).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setInfaObs(predmets.get(5).getCount2() + predmets.get(5).getCount3() + predmets.get(5).getCount4() + predmets.get(5).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setInfaYsp(((predmets.get(5).getCount3() + predmets.get(5).getCount4() + predmets.get(5).getCount5()) * 100) /
+                                (predmets.get(5).getCount2() + predmets.get(5).getCount3() + predmets.get(5).getCount4() + predmets.get(5).getCount5()));
+                        egeOtcots.get(egeOtcots.size() - 1).setRusKat(((predmets.get(5).getCount4() + predmets.get(5).getCount5()) * 100) /
+                                (predmets.get(5).getCount2() + predmets.get(5).getCount3() + predmets.get(5).getCount4() + predmets.get(5).getCount5()));
+
+
+                        egeOtcots.get(egeOtcots.size() - 1).setBio2(predmets.get(6).getCount2());
+                        egeOtcots.get(egeOtcots.size() - 1).setBio3(predmets.get(6).getCount3());
+                        egeOtcots.get(egeOtcots.size() - 1).setBio4(predmets.get(6).getCount4());
+                        egeOtcots.get(egeOtcots.size() - 1).setBio5(predmets.get(6).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setBioObs(predmets.get(6).getCount2() + predmets.get(6).getCount3() + predmets.get(6).getCount4() + predmets.get(6).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setInfaYsp(((predmets.get(6).getCount3() + predmets.get(6).getCount4() + predmets.get(6).getCount5()) * 100) /
+                                (predmets.get(6).getCount2() + predmets.get(6).getCount3() + predmets.get(6).getCount4() + predmets.get(6).getCount5()));
+                        egeOtcots.get(egeOtcots.size() - 1).setRusKat(((predmets.get(6).getCount4() + predmets.get(6).getCount5()) * 100 )/
+                                (predmets.get(6).getCount2() + predmets.get(6).getCount3() + predmets.get(6).getCount4() + predmets.get(6).getCount5()));
+
+                        egeOtcots.get(egeOtcots.size() - 1).setGeo2(predmets.get(7).getCount2());
+                        egeOtcots.get(egeOtcots.size() - 1).setGeo3(predmets.get(7).getCount3());
+                        egeOtcots.get(egeOtcots.size() - 1).setGeo4(predmets.get(7).getCount4());
+                        egeOtcots.get(egeOtcots.size() - 1).setGeo5(predmets.get(7).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setGeoObs(predmets.get(7).getCount2() + predmets.get(7).getCount3() + predmets.get(7).getCount4() + predmets.get(7).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setInfaYsp(((predmets.get(7).getCount3() + predmets.get(7).getCount4() + predmets.get(7).getCount5()) * 100 )/
+                                (predmets.get(7).getCount2() + predmets.get(7).getCount3() + predmets.get(7).getCount4() + predmets.get(7).getCount5()));
+                        egeOtcots.get(egeOtcots.size() - 1).setRusKat(((predmets.get(7).getCount4() + predmets.get(7).getCount5()) * 100 )/
+                                (predmets.get(7).getCount2() + predmets.get(7).getCount3() + predmets.get(7).getCount4() + predmets.get(7).getCount5()));
+
+                        egeOtcots.get(egeOtcots.size() - 1).setAngl2(predmets.get(8).getCount2());
+                        egeOtcots.get(egeOtcots.size() - 1).setAngl3(predmets.get(8).getCount3());
+                        egeOtcots.get(egeOtcots.size() - 1).setAngl4(predmets.get(8).getCount4());
+                        egeOtcots.get(egeOtcots.size() - 1).setAngl5(predmets.get(8).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setAnglObs(predmets.get(8).getCount2() + predmets.get(8).getCount3() + predmets.get(8).getCount4() + predmets.get(8).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setInfaYsp(((predmets.get(8).getCount3() + predmets.get(8).getCount4() + predmets.get(8).getCount5()) * 100 )/
+                                (predmets.get(8).getCount2() + predmets.get(8).getCount3() + predmets.get(8).getCount4() + predmets.get(8).getCount5()));
+                        egeOtcots.get(egeOtcots.size() - 1).setRusKat(((predmets.get(8).getCount4() + predmets.get(8).getCount5()) * 100) /
+                                (predmets.get(8).getCount2() + predmets.get(8).getCount3() + predmets.get(8).getCount4() + predmets.get(8).getCount5()));
+
+                        egeOtcots.get(egeOtcots.size() - 1).setObsestv2(predmets.get(9).getCount2());
+                        egeOtcots.get(egeOtcots.size() - 1).setObsestv3(predmets.get(9).getCount3());
+                        egeOtcots.get(egeOtcots.size() - 1).setObsestv4(predmets.get(9).getCount4());
+                        egeOtcots.get(egeOtcots.size() - 1).setObsestv5(predmets.get(9).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setObsestvObs(predmets.get(9).getCount2() + predmets.get(9).getCount3() + predmets.get(9).getCount4() + predmets.get(9).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setInfaYsp(((predmets.get(9).getCount3() + predmets.get(9).getCount4() + predmets.get(9).getCount5()) * 100) /
+                                (predmets.get(9).getCount2() + predmets.get(9).getCount3() + predmets.get(9).getCount4() + predmets.get(9).getCount5()));
+                        egeOtcots.get(egeOtcots.size() - 1).setRusKat(((predmets.get(9).getCount4() + predmets.get(9).getCount5()) * 100) /
+                                (predmets.get(9).getCount2() + predmets.get(9).getCount3() + predmets.get(9).getCount4() + predmets.get(9).getCount5()));
+
+                        egeOtcots.get(egeOtcots.size() - 1).setObsestv2(predmets.get(10).getCount2());
+                        egeOtcots.get(egeOtcots.size() - 1).setObsestv3(predmets.get(10).getCount3());
+                        egeOtcots.get(egeOtcots.size() - 1).setObsestv4(predmets.get(10).getCount4());
+                        egeOtcots.get(egeOtcots.size() - 1).setObsestv5(predmets.get(10).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setObsestvObs(predmets.get(10).getCount2() + predmets.get(10).getCount3() + predmets.get(10).getCount4() + predmets.get(10).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setInfaYsp(((predmets.get(10).getCount3() + predmets.get(10).getCount4() + predmets.get(10).getCount5()) * 100) /
+                                (predmets.get(10).getCount2() + predmets.get(10).getCount3() + predmets.get(10).getCount4() + predmets.get(10).getCount5()));
+                        egeOtcots.get(egeOtcots.size() - 1).setRusKat(((predmets.get(10).getCount4() + predmets.get(10).getCount5()) * 100) /
+                                (predmets.get(10).getCount2() + predmets.get(10).getCount3() + predmets.get(10).getCount4() + predmets.get(10).getCount5()));
+
+                        egeOtcots.get(egeOtcots.size() - 1).setLiter2(predmets.get(11).getCount2());
+                        egeOtcots.get(egeOtcots.size() - 1).setLiter3(predmets.get(11).getCount3());
+                        egeOtcots.get(egeOtcots.size() - 1).setLiter4(predmets.get(11).getCount4());
+                        egeOtcots.get(egeOtcots.size() - 1).setLiter5(predmets.get(11).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setLiterObs(predmets.get(11).getCount2() + predmets.get(11).getCount3() + predmets.get(11).getCount4() + predmets.get(11).getCount5());
+                        egeOtcots.get(egeOtcots.size() - 1).setInfaYsp(((predmets.get(11).getCount3() + predmets.get(11).getCount4() + predmets.get(11).getCount5()) * 100) /
+                                (predmets.get(11).getCount2() + predmets.get(11).getCount3() + predmets.get(11).getCount4() + predmets.get(11).getCount5()));
+                        egeOtcots.get(egeOtcots.size() - 1).setRusKat(((predmets.get(11).getCount4() + predmets.get(11).getCount5()) * 100) /
+                                (predmets.get(11).getCount2() + predmets.get(11).getCount3() + predmets.get(11).getCount4() + predmets.get(11).getCount5()));
+                    });
+
+//                    numberPP.setCellValueFactory(new PropertyValueFactory<Stipendia_zaMesaz, Integer>("numberPP"));
+//                    statusStudent.setCellValueFactory(new PropertyValueFactory<Stipendia_zaMesaz, String>("statusStudent"));
+//                    FIO.setCellValueFactory(new PropertyValueFactory<Stipendia_zaMesaz, String>("Fio"));
+//                    summa.setCellValueFactory(new PropertyValueFactory<Stipendia_zaMesaz, Double>("summaR"));
+//                    this.mounts.setCellValueFactory(new PropertyValueFactory<Stipendia_zaMesaz, String>("mounts"));
+//                    stipMesaz.setItems(Stipendia_zaMesazData);
                     break;
             }
         });

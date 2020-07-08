@@ -24,7 +24,7 @@
                 </Label>
             </children>
         </AnchorPane>
-        <MenuBar layoutY="2.0" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="840.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+        <MenuBar layoutX="1.0" layoutY="1.0" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="840.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
             <menus>
                 <Menu mnemonicParsing="false" text="Файл">
                     <items>
@@ -174,21 +174,177 @@
             <TextField fx:id="TF_Year" layoutX="336.0" layoutY="14.0" />
             <AnchorPane fx:id="EGE" layoutX="8.0" layoutY="53.0" prefHeight="546.0" prefWidth="826.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="53.0">
                <children>
-                  <TableView fx:id="otEGE" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="EGEOt" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columns>
-                        <TableColumn fx:id="NameSchool" prefWidth="30.39999485015869" text="Наименование &#10;школ" />
-                        <TableColumn fx:id="RUssianLang" minWidth="0.0" prefWidth="56.80001449584961" text="Русский &#10;язык&#10;&#10;" />
-                        <TableColumn fx:id="MatemProfil" prefWidth="49.5999755859375" text="Математика &#10;профильная" />
-                        <TableColumn fx:id="MatemBas" prefWidth="79.99993896484375" text="Математика&#10;базовая" />
-                        <TableColumn fx:id="Physik" prefWidth="68.80000305175781" text="Физика" />
-                        <TableColumn fx:id="Xummi" prefWidth="39.20001220703125" text="Химия" />
-                        <TableColumn fx:id="informatika" prefWidth="92.0" text="Информатика &#10;и ИТК&#10;" />
-                        <TableColumn fx:id="biologia" prefWidth="43.20001220703125" text="Биология" />
-                        <TableColumn fx:id="History" prefWidth="44.00006103515625" text="История" />
-                        <TableColumn fx:id="georafia" prefWidth="75.0" text="География" />
-                        <TableColumn fx:id="Angliiskii" prefWidth="108.79998779296875" text="Английский &#10;язык&#10;" />
-                        <TableColumn fx:id="obshestvo" prefWidth="75.0" text="Обществознание" />
-                        <TableColumn fx:id="literatura" prefWidth="116.0001220703125" text="Литература" />
+                        <TableColumn fx:id="NameSchool" prefWidth="44.799988746643066" text="Наименование &#10;школ" />
+                        <TableColumn fx:id="RUssianLang" minWidth="0.0" prefWidth="131.20000839233398" text="Русский &#10;язык&#10;&#10;">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Кол-во учеников&#10;получивших &#10;оценки">
+                                 <columns>
+                                    <TableColumn fx:id="_2RussianL" prefWidth="15.19997787475586" text="2" />
+                                    <TableColumn fx:id="_3RussianL" prefWidth="17.600006103515625" text="3" />
+                                    <TableColumn fx:id="_4RussianL" prefWidth="13.5999755859375" text="4" />
+                                    <TableColumn fx:id="_5RussianL" prefWidth="15.199981689453125" text="5" />
+                                 </columns>
+                              </TableColumn>
+                              <TableColumn fx:id="RussianLObsKOL" prefWidth="16.0" text="Общее кол-во" />
+                              <TableColumn fx:id="RussianLYspevaemosti" prefWidth="16.800018310546875" text="\% успеваемости" />
+                              <TableColumn fx:id="RussianLKatZN" prefWidth="17.600006103515625" text="\% качество &#10;знаний" />
+                           </columns></TableColumn>
+                        <TableColumn fx:id="MatemProfil" minWidth="0.0" prefWidth="408.80003356933594" text="Математика &#10;профильная">
+                           <columns>
+                              <TableColumn prefWidth="105.5999755859375" text="Кол-во учеников&#10;получивших &#10;оценки">
+                                 <columns>
+                                    <TableColumn fx:id="_2Matpr" prefWidth="15.20001220703125" text="2" />
+                                    <TableColumn fx:id="_3Matpr" prefWidth="21.5999755859375" text="3" />
+                                    <TableColumn fx:id="_4Matpr" prefWidth="17.59991455078125" text="4" />
+                                    <TableColumn fx:id="_5Matpr" minWidth="8.79998779296875" prefWidth="8.79998779296875" text="5" />
+                                 </columns>
+                              </TableColumn>
+                              <TableColumn fx:id="MatprObsee" minWidth="8.800048828125" prefWidth="8.800048828125" text="Общее &#10;кол-во" />
+                              <TableColumn fx:id="_Matpryspevae" minWidth="9.5999755859375" prefWidth="11.99993896484375" text="\% успеваемости" />
+                              <TableColumn fx:id="kazhZN_Matpr" prefWidth="25.599990844726562" text="\%&#10;качетсво &#10;знаний" />
+                           </columns></TableColumn>
+                        <TableColumn fx:id="MatemBas" minWidth="0.0" prefWidth="36.7999267578125" text="Математика&#10;базовая">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Кол-во учеников &#10;получивших&#10;оценки">
+                                 <columns>
+                                    <TableColumn fx:id="MatBaz2" prefWidth="17.5999755859375" text="2" />
+                                    <TableColumn fx:id="MatBaz3" prefWidth="16.79998779296875" text="3" />
+                                    <TableColumn fx:id="MatBaz4" prefWidth="13.5999755859375" text="4" />
+                                    <TableColumn fx:id="MatBaz5" prefWidth="24.0" text="5" />
+                                 </columns>
+                              </TableColumn>
+                              <TableColumn fx:id="MatBazObsee" prefWidth="22.4000244140625" text="Общее&#10;кол-во" />
+                              <TableColumn fx:id="MatBazyspev" minWidth="0.0" prefWidth="11.199951171875" text="\% Успеваемости" />
+                              <TableColumn fx:id="MatBazkachZn" prefWidth="26.39996337890625" text="\%&#10;качество&#10;знаний" />
+                           </columns></TableColumn>
+                        <TableColumn fx:id="Physik" minWidth="0.0" prefWidth="0.0" text="Физика">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Кол-во учеников&#10;получивших &#10;оценки">
+                                 <columns>
+                                    <TableColumn fx:id="physik2" prefWidth="75.0" text="2" />
+                                    <TableColumn fx:id="physik3" prefWidth="75.0" text="3" />
+                                    <TableColumn fx:id="physik4" prefWidth="75.0" text="4" />
+                                    <TableColumn fx:id="physik5" prefWidth="75.0" text="5" />
+                                 </columns>
+                              </TableColumn>
+                              <TableColumn fx:id="physikObsee" prefWidth="75.0" text="Общее кол-во" />
+                              <TableColumn fx:id="physikYspev" prefWidth="75.0" text="\% успеваемости" />
+                              <TableColumn fx:id="physikKatch" prefWidth="75.0" text="\%&#10;качество &#10;знаний" />
+                           </columns></TableColumn>
+                        <TableColumn fx:id="Xummi" prefWidth="39.20001220703125" text="Химия">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Кол-во учеников&#10;получивших&#10;оценки">
+                                 <columns>
+                                    <TableColumn fx:id="Xiimia2" prefWidth="12.79998779296875" text="2" />
+                                    <TableColumn fx:id="Xiimia3" prefWidth="20.0" text="3" />
+                                    <TableColumn fx:id="Xiimia4" minWidth="9.5999755859375" prefWidth="9.5999755859375" text="4" />
+                                    <TableColumn fx:id="Xiimia5" prefWidth="18.4000244140625" text="5" />
+                                 </columns>
+                              </TableColumn>
+                              <TableColumn fx:id="Xiimiaobsee" minWidth="3.99993896484375" prefWidth="3.99993896484375" text="общее кол-во" />
+                              <TableColumn fx:id="Xiimiayspevaem" prefWidth="11.199951171875" text="\% Успеваемости" />
+                              <TableColumn fx:id="XiimiakachZn" minWidth="4.79998779296875" prefWidth="4.79998779296875" text="\% &#10;качество&#10;знаний" />
+                           </columns></TableColumn>
+                        <TableColumn fx:id="informatika" prefWidth="92.0" text="Информатика &#10;и ИТК&#10;">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="кол-во учеников&#10;получивших &#10;оценки">
+                                 <columns>
+                                    <TableColumn fx:id="unfa2" prefWidth="15.199951171875" text="2" />
+                                    <TableColumn fx:id="unfa3" prefWidth="16.79998779296875" text="3" />
+                                    <TableColumn fx:id="unfa4" prefWidth="18.39996337890625" text="4" />
+                                    <TableColumn fx:id="unfa5" prefWidth="15.199951171875" text="5" />
+                                 </columns>
+                              </TableColumn>
+                              <TableColumn fx:id="unfaObsee" prefWidth="18.39996337890625" text="Общее кол-во" />
+                              <TableColumn fx:id="unfaYspevaem" minWidth="0.0" prefWidth="12.79986572265625" text="\% Успеваемости" />
+                              <TableColumn fx:id="unfakachest" prefWidth="29.59991455078125" text="\% &#10;качество &#10;знаний" />
+                           </columns></TableColumn>
+                        <TableColumn fx:id="biologia" prefWidth="43.20001220703125" text="Биология">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Кол-во учеников&#10;получивших &#10;оценки">
+                                 <columns>
+                                    <TableColumn fx:id="biolog2" prefWidth="75.0" text="2" />
+                                    <TableColumn fx:id="biolog3" prefWidth="75.0" text="3" />
+                                    <TableColumn fx:id="biolog4" prefWidth="75.0" text="4" />
+                                    <TableColumn fx:id="biolo5" prefWidth="75.0" text="5" />
+                                 </columns>
+                              </TableColumn>
+                              <TableColumn fx:id="biologObsee" prefWidth="75.0" text="Общее кол-во" />
+                              <TableColumn fx:id="biologYspevaemost" prefWidth="75.0" text="\% успеваемости" />
+                              <TableColumn fx:id="biologKach" prefWidth="75.0" text="\% &#10;качество&#10;знаний" />
+                           </columns></TableColumn>
+                        <TableColumn fx:id="History" prefWidth="44.00006103515625" text="История">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Кол-во учеников&#10;получивших&#10;оценки">
+                                 <columns>
+                                    <TableColumn fx:id="histor2" prefWidth="75.0" text="2" />
+                                    <TableColumn fx:id="histor3" prefWidth="75.0" text="3" />
+                                    <TableColumn fx:id="histor4" prefWidth="75.0" text="4" />
+                                    <TableColumn fx:id="histor5" prefWidth="75.0" text="5" />
+                                 </columns>
+                              </TableColumn>
+                              <TableColumn fx:id="historObsee" prefWidth="75.0" text="Общее кол-во" />
+                              <TableColumn fx:id="historYspevaemosti" prefWidth="75.0" text="\% успеваемости" />
+                              <TableColumn fx:id="historKachestvo" prefWidth="75.0" text="\%&#10;качество&#10;знаний" />
+                           </columns></TableColumn>
+                        <TableColumn fx:id="georafia" prefWidth="75.0" text="География">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Кол-во учеников&#10;получивших &#10;оценки&#10;">
+                                 <columns>
+                                    <TableColumn fx:id="georaf2" prefWidth="75.0" text="2" />
+                                    <TableColumn fx:id="georaf3" prefWidth="75.0" text="3" />
+                                    <TableColumn fx:id="georaf4" prefWidth="75.0" text="4" />
+                                    <TableColumn fx:id="georaf5" prefWidth="75.0" text="5" />
+                                 </columns>
+                              </TableColumn>
+                              <TableColumn fx:id="georafobsee" prefWidth="75.0" text="Общее кол-во" />
+                              <TableColumn fx:id="georafYspev" prefWidth="75.0" text="\% успеваемости" />
+                              <TableColumn fx:id="georafKache" prefWidth="75.0" text="\%&#10;качество&#10;знаний" />
+                           </columns></TableColumn>
+                        <TableColumn fx:id="Angliiskii" prefWidth="108.79998779296875" text="Английский &#10;язык&#10;">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Кол-во учеников&#10;получивших &#10;оценки">
+                                 <columns>
+                                    <TableColumn fx:id="angl2" prefWidth="75.0" text="2" />
+                                    <TableColumn fx:id="angl3" prefWidth="75.0" text="3" />
+                                    <TableColumn fx:id="angl4" prefWidth="75.0" text="4" />
+                                    <TableColumn fx:id="angl5" prefWidth="75.0" text="5" />
+                                 </columns>
+                              </TableColumn>
+                              <TableColumn fx:id="anglObsee" prefWidth="75.0" text="Общее кол-во" />
+                              <TableColumn fx:id="anglYspevae" prefWidth="75.0" text="\% успеваемости" />
+                              <TableColumn fx:id="anglkachestv" prefWidth="75.0" text="\%&#10;качество&#10;знаний&#10;" />
+                           </columns></TableColumn>
+                        <TableColumn fx:id="obshestvo" prefWidth="75.0" text="Обществознание">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Кол-во учеников&#10;получивших &#10;оценки">
+                                 <columns>
+                                    <TableColumn fx:id="Obsestvo2" prefWidth="75.0" text="2" />
+                                    <TableColumn fx:id="Obsestvo3" prefWidth="75.0" text="3" />
+                                    <TableColumn fx:id="Obsestvo4" prefWidth="75.0" text="4" />
+                                    <TableColumn fx:id="Obsestvo5" prefWidth="75.0" text="5" />
+                                 </columns>
+                              </TableColumn>
+                              <TableColumn fx:id="ObsestvoObsee" prefWidth="75.0" text="Общее кол-во" />
+                              <TableColumn fx:id="ObsestvoYspev" prefWidth="75.0" text="\% успеваемости" />
+                              <TableColumn fx:id="ObsestvoKatche" prefWidth="75.0" text="\%&#10;качество&#10;знаний" />
+                           </columns></TableColumn>
+                        <TableColumn fx:id="literatura" prefWidth="116.0001220703125" text="Литература">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Кол-во учеников&#10;получивших &#10;оценки&#10;">
+                                 <columns>
+                                    <TableColumn fx:id="liter2" prefWidth="75.0" text="2" />
+                                    <TableColumn fx:id="liter3" prefWidth="75.0" text="3" />
+                                    <TableColumn fx:id="liter4" prefWidth="75.0" text="4" />
+                                    <TableColumn fx:id="liter5" prefWidth="75.0" text="5" />
+                                 </columns>
+                              </TableColumn>
+                              <TableColumn fx:id="literObsee" prefWidth="75.0" text="Общее кол-во" />
+                              <TableColumn fx:id="literyspeva" prefWidth="75.0" text="\% успеваемости" />
+                              <TableColumn fx:id="literKat" prefWidth="75.0" text="\%&#10;качество&#10;знаний&#10;" />
+                           </columns></TableColumn>
                      </columns>
                   </TableView>
                </children>

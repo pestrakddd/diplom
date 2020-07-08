@@ -12,12 +12,3 @@ public class EGE {
     ArrayList <Predmet> Predmets = new ArrayList<>();
 }
 
-@Getter
-@Setter
-class Predmet {
-    String namePredmen;
-    double count2;
-    double count3;
-    double count4;
-    double count5;
-}
