@@ -594,7 +594,7 @@ public class sampleController extends Component {
         EGE.setVisible(false);
         tableEmpty.setVisible(true);
 
-        ObservableList<String> typeOtchot = FXCollections.observableArrayList("Выплата стипендии за месяц", "Годовая выплата стипендии", "Реестр", "ЕГЭ");
+        ObservableList<String> typeOtchot = FXCollections.observableArrayList("Выплата стипендии за месяц", "Годовая выплата стипендии", "ЕГЭ");
         selectTyprOtchot.setItems(typeOtchot);
 
         newFile.setOnAction(e -> {

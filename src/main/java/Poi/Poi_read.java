@@ -3,6 +3,8 @@ package Poi;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.ss.util.CellUtil;
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -340,9 +342,11 @@ public class Poi_read {
             HSSFCellStyle style2 = book.createCellStyle();
             HSSFCellStyle style3 = book.createCellStyle();
 
+            style2.setWrapText(true);
             style.setBorderTop(HSSFCellStyle.BORDER_MEDIUM);
             style.setBorderRight(HSSFCellStyle.BORDER_MEDIUM);
             style.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
+            style2.setBorderBottom(HSSFCellStyle.BORDER_MEDIUM);
             style2.setBorderTop(HSSFCellStyle.BORDER_MEDIUM);
             style2.setBorderRight(HSSFCellStyle.BORDER_MEDIUM);
             style2.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
@@ -352,28 +356,1074 @@ public class Poi_read {
             style3.setBorderTop(HSSFCellStyle.BORDER_MEDIUM);
 
 
+
             style.setFont(font);
             font.setFontHeightInPoints((short) 12);
             font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
             font.setFontName("Times New Roman");
             style.setAlignment(style.ALIGN_CENTER);
 
-            HSSFRow row = sheet.createRow((short) 0);
+            final HSSFRow[] row = {sheet.createRow((short) 0)};
             style2.setWrapText(true);
-            row.setRowStyle(style2);
+            row[0].setRowStyle(style2);
 
             sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 84));
-            sheet.autoSizeColumn(0);
+            sheet.addMergedRegion(new CellRangeAddress(2, 4, 0, 0));
+            Cell cell1_1 = row[0].createCell(0);
 
-            ArrayList <Cell> cells = new ArrayList<>();
-            for (int i = 0; i < 8; i++) {
-                cells.add(row.createCell(i));
-                Cell cell1 = row.createCell(i);
+            cell1_1.setCellValue("ПРЕДМЕТНЫЙ  ОТЧЕТ КАЧЕСТВО ЗНАНИЙ  -  ЕГЭ");
+            row[0].getCell(0).setCellStyle(style);
+            row[0] = sheet.createRow(2);
+            Cell cell2_1 = row[0].createCell(0);
+            row[0].getCell(0).setCellStyle(style2);
+            cell2_1.setCellValue("Наименование школ");
+
+            row[0] = sheet.createRow(3);
+            row[0] = sheet.createRow(4);
+            for (int i = 0; i<12;i++) {
+                row[0] = sheet.getRow(2);
+                sheet.addMergedRegion(new CellRangeAddress(2, 2, 1+i*7, 7+i*7));
+                sheet.addMergedRegion(new CellRangeAddress(3, 3, 1+i*7, 4+i*7));
+                sheet.addMergedRegion(new CellRangeAddress(3, 4, 5+i*7, 5+i*7));
+                sheet.addMergedRegion(new CellRangeAddress(3, 4, 6+i*7, 6+i*7));
+                sheet.addMergedRegion(new CellRangeAddress(3, 4, 7+i*7, 7+i*7));
+
+
+                Cell cell2_2 = row[0].createCell(1+i*7);
+                Cell cell2_21 = row[0].createCell(2+i*7);
+                Cell cell2_22 = row[0].createCell(3+i*7);
+                Cell cell2_23 = row[0].createCell(4+i*7);
+                Cell cell2_24 = row[0].createCell(5+i*7);
+                Cell cell2_25 = row[0].createCell(6+i*7);
+                Cell cell2_26 = row[0].createCell(7+i*7);
+                row[0].getCell(2+i*7).setCellStyle(style2);
+                row[0].getCell(3+i*7).setCellStyle(style2);
+                row[0].getCell(4+i*7).setCellStyle(style2);
+                row[0].getCell(5+i*7).setCellStyle(style2);
+                row[0].getCell(6+i*7).setCellStyle(style2);
+                row[0].getCell(7+i*7).setCellStyle(style2);
+
+                row[0].getCell(1+i*7).setCellStyle(style2);
+                switch (i){
+                    case 0:
+                        cell2_2.setCellValue("Русский язык");
+                        break;
+                    case 1:
+                        cell2_2.setCellValue("Математика профильная");
+                        break;
+                    case 2:
+                        cell2_2.setCellValue("Математика базовая");
+                        break;
+                    case 3:
+                        cell2_2.setCellValue("Физика");
+                        break;
+                    case 4:
+                        cell2_2.setCellValue("Химия");
+                        break;
+                    case 5:
+                        cell2_2.setCellValue("Информатика и ИКТ");
+                        break;
+                    case 6:
+                        cell2_2.setCellValue("Биология");
+                        break;
+                    case 7:
+                        cell2_2.setCellValue("История");
+                        break;
+                    case 8:
+                        cell2_2.setCellValue("География");
+                        break;
+                    case 9:
+                        cell2_2.setCellValue("Английский язык");
+                        break;
+                    case 10:
+                        cell2_2.setCellValue("Обществознание");
+                        break;
+                    case 11:
+                        cell2_2.setCellValue("Литература");
+                        break;
+
+                }
+
+                row[0] = sheet.getRow(3);
+                Cell cell3_1 = row[0].createCell(1+i*7);
+                Cell cell3_12 = row[0].createCell(2+i*7);
+                Cell cell3_13 = row[0].createCell(3+i*7);
+                Cell cell3_14 = row[0].createCell(4+i*7);
+                Cell cell3_2 = row[0].createCell(5+i*7);
+                Cell cell3_3 = row[0].createCell(6+i*7);
+                Cell cell3_4 = row[0].createCell(7+i*7);
+                row[0].getCell(2+i*7).setCellStyle(style2);
+                row[0].getCell(3+i*7).setCellStyle(style2);
+                row[0].getCell(4+i*7).setCellStyle(style2);
+
+
+                row[0].getCell(1+i*7).setCellStyle(style2);
+                cell3_1.setCellValue("Кол-во учеников получивших оценки");
+                sheet.autoSizeColumn(1+i*7);
+                row[0].getCell(5+i*7).setCellStyle(style2);
+                cell3_2.setCellValue("Общее кол-во");
+                sheet.autoSizeColumn(5+i*7);
+                row[0].getCell(6+i*7).setCellStyle(style2);
+                cell3_3.setCellValue("% успеваемости");
+                sheet.autoSizeColumn(6+i*7);
+                row[0].getCell(7+i*7).setCellStyle(style2);
+                cell3_4.setCellValue("% качество знаний");
+                sheet.autoSizeColumn(7+i*7);
+
+                row[0] = sheet.getRow(4);
+
+                Cell cell4_1 = row[0].createCell(1+i*7);
+                Cell cell4_2 = row[0].createCell(2+i*7);
+                Cell cell4_3 = row[0].createCell(3+i*7);
+                Cell cell4_4 = row[0].createCell(4+i*7);
+                Cell cell4_41 = row[0].createCell(5+i*7);
+                Cell cell4_42 = row[0].createCell(6+i*7);
+                Cell cell4_43 = row[0].createCell(7+i*7);
+                cell4_1.setCellValue("2");
+                cell4_2.setCellValue("3");
+                cell4_3.setCellValue("4");
+                cell4_4.setCellValue("5");
+                row[0].getCell(1+i*7).setCellStyle(style2);
+                row[0].getCell(2+i*7).setCellStyle(style2);
+                row[0].getCell(3+i*7).setCellStyle(style2);
+                row[0].getCell(4+i*7).setCellStyle(style2);
+                row[0].getCell(5+i*7).setCellStyle(style2);
+                row[0].getCell(6+i*7).setCellStyle(style2);
+                row[0].getCell(7+i*7).setCellStyle(style2);
+
             }
 
-            for (int i = 0; i < 87; i++) {
-                row.getCell(i).setCellStyle(style);
+            final Integer[] i = {1};
+            egeOtcots.stream().forEach(el->{
+
+                row[0] = sheet.createRow(4+ i[0]);
+                Cell cel5_1 = row[0].createCell(0);
+                cel5_1.setCellValue(el.getNameSchool());
+                int z = 1;
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getRus2());
+                    
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getRus3());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getRus4());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getRus5());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getRusObs());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getRusYsp());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getRusKat());
+                }
+                
+                
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getMatPr2());
+
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getMatPr3());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getMatPr4());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getMatPr5());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getMatPrObs());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getMatPrYsp());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getMatPrKat());
+                }
+
+
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getMatBas2());
+
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getMatBas3());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getMatBas4());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getMatBas5());
+                }
+
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getMatBasObs());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getMatBasYsp());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getMatBasKat());
+                }
+
+
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getPhysik2());
+
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getPhysik3());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getPhysik4());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getPhysik5());
+                }
+
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getPhysikObs());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getPhysikYsp());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getPhysikKat());
+                }
+
+
+
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getXummi2());
+
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getXummi3());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getXummi4());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getXummi5());
+                }
+
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getXummiObs());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getXummiYsp());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getXummiKat());
+                }
+
+
+
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getInfa2());
+
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getInfa3());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getInfa4());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getInfa5());
+                }
+
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getInfaObs());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getInfaYsp());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getInfaKat());
+                }
+
+
+
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getBio2());
+
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getBio3());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getBio4());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getBio5());
+                }
+
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getBioObs());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getBioYsp());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getBioKat());
+                }
+
+
+
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getHis2());
+
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getHis3());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getHis4());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getHis5());
+                }
+
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getHisObs());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getHisYsp());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getHisKat());
+                }
+
+
+
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getLiter2());
+
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getLiter3());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getLiter4());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getLiter5());
+                }
+
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getLiterObs());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getLiterYsp());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getLiterKat());
+                }
+
+
+
+
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getAngl2());
+
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getAngl3());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getAngl4());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getAngl5());
+                }
+
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getAnglObs());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getAnglYsp());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getAnglKat());
+                }
+
+
+
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getObsestv2());
+
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getObsestv3());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getObsestv4());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getObsestv5());
+                }
+
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getObsestvObs());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getObsestvYsp());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getObsestvKat());
+                }
+
+
+
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getGeo2());
+
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getGeo3());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getGeo4());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getGeo5());
+                }
+
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getGeoObs());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getGeoYsp());
+                }
+                {
+                    Cell cell1 = row[0].createCell(z++);
+                    cell1.setCellValue(el.getGeoKat());
+                }
+
+
+                for( int g = 0; g<85 ; g++ ){
+                    row[0].getCell(g).setCellStyle(style2);
+                }
+                i[0]++;
+                sheet.autoSizeColumn(0);
+
+            });
+            row[0] = sheet.createRow(5+egeOtcots.size());
+            int u = 0;
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellValue("И Т О Г О");
             }
+            String diap = String.valueOf(egeOtcots.size() + 5);
+            String diap2 = String.valueOf(egeOtcots.size() + 6);
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(B6:B"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(C6:C"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(D6:D"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(E6:E"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(F6:F"+diap+ ")");
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(C"+diap2+":E"+diap2+")*100/F"+diap2);
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(D"+diap2+":E"+diap2+")*100/F"+diap2);
+            }
+
+
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(I6:I"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(J6:J"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(K6:K"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(L6:L"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(M6:M"+diap+ ")");
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(J"+diap2+":L"+diap2+")*100/M"+diap2);
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(K"+diap2+":L"+diap2+")*100/M"+diap2);
+            }
+
+
+
+
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(P6:P"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(Q6:Q"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(R6:R"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(S6:S"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(T6:T"+diap+ ")");
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(Q"+diap2+":S"+diap2+")*100/T"+diap2);
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(R"+diap2+":S"+diap2+")*100/T"+diap2);
+            }
+
+
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(W6:W"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(X6:X"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(Y6:Y"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(Z6:Z"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AA6:AA"+diap+ ")");
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(X"+diap2+":Z"+diap2+")*100/AA"+diap2);
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(Y"+diap2+":Z"+diap2+")*100/AA"+diap2);
+            }
+
+
+
+
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AD6:AD"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AE6:AE"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AF6:AF"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AG6:AG"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AH6:AH"+diap+ ")");
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AE"+diap2+":AG"+diap2+")*100/AH"+diap2);
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AF"+diap2+":AG"+diap2+")*100/AH"+diap2);
+            }
+
+
+
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AK6:AK"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AL6:AL"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AM6:AM"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AN6:AN"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AO6:AO"+diap+ ")");
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AL"+diap2+":AN"+diap2+")*100/AO"+diap2);
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AM"+diap2+":AN"+diap2+")*100/AO"+diap2);
+            }
+
+
+
+
+
+
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AR6:AR"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AS6:AS"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AT6:AT"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AU6:AU"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AV6:AV"+diap+ ")");
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AS"+diap2+":AU"+diap2+")*100/AV"+diap2);
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AT"+diap2+":AU"+diap2+")*100/AV"+diap2);
+            }
+
+
+
+
+
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AY6:AY"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AZ6:AZ"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BA6:BA"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BB6:BB"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BC6:BC"+diap+ ")");
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(AZ"+diap2+":BB"+diap2+")*100/BC"+diap2);
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BA"+diap2+":BB"+diap2+")*100/BC"+diap2);
+            }
+
+
+
+
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BF6:BF"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BG6:BG"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BH6:BH"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BI6:BI"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BJ6:BJ"+diap+ ")");
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BG"+diap2+":BI"+diap2+")*100/BJ"+diap2);
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BH"+diap2+":BI"+diap2+")*100/BJ"+diap2);
+            }
+
+
+
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BM6:BM"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BN6:BN"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BO6:BO"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BP6:BP"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BQ6:BQ"+diap+ ")");
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BN"+diap2+":BP"+diap2+")*100/BQ"+diap2);
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BO"+diap2+":BP"+diap2+")*100/BQ"+diap2);
+            }
+
+
+
+
+
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BT6:BT"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BU6:BU"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BV6:BV"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BW6:BW"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BX6:BX"+diap+ ")");
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BU"+diap2+":BW"+diap2+")*100/BX"+diap2);
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(BV"+diap2+":BW"+diap2+")*100/BX"+diap2);
+            }
+
+
+
+
+
+
+
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(CA6:CA"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(CB6:CB"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(CC6:CC"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(CD6:CD"+diap+ ")");
+            }
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(CE6:CE"+diap+ ")");
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(CB"+diap2+":CD"+diap2+")*100/CE"+diap2);
+            }
+
+            {
+                Cell cell1 = row[0].createCell(u++);
+                cell1.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                cell1.setCellFormula("SUM(CC"+diap2+":CD"+diap2+")*100/CE"+diap2);
+            }
+                for( int g = 0; g<85; g++ ){
+                    row[0].getCell(g).setCellStyle(style2);
+                }
+
+
+//            for(int i = 0; i < egeOtcots.size(); i++){
+//
+//            }
+//           ArrayList <Cell> cells = new ArrayList<>();
+//            for (int i = 0; i < 87; i++) {
+//                cells.add(row.createCell(i));
+//                Cell cell1 = row.createCell(i);
+//            }
+
+
+//            CellUtil.setAlignment(cell1_1, book, CellStyle.ALIGN_CENTER);
+//            row.getCell(0).setCellStyle(style2);
+
 //            Cell cell1 = row.createCell(0);
 //            Cell cell1_1 = row.createCell(1);
 //            Cell cell1_2 = row.createCell(2);
@@ -385,7 +1435,7 @@ public class Poi_read {
 //            row.getCell(3).setCellStyle(style);
 
 
-            cells.get(0).setCellValue("ПРЕДМЕТНЫЙ  ОТЧЕТ КАЧЕСТВО ЗНАНИЙ  -  ЕГЭ");
+
 //            cell1.setCellValue("С Т И П Е Н Д И Я");
 //            row = sheet.createRow(1);
 //            Cell cell2 = row.createCell(0);
