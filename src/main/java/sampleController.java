@@ -446,6 +446,8 @@ public class sampleController extends Component {
         lblYear.setVisible(false);
         TF_Year.setVisible(false);
 
+        workPane.toFront();
+
         ObservableList<String> mounts = FXCollections.observableArrayList("Январь", "Февраль", "Март", "Апрель",
                                                                                 "Май", "Июнь", "Июль", "Август",
                                                                                 "Сентябрь", "Октябрь", "Ноябрь", "Декабрь");
@@ -623,6 +625,7 @@ public class sampleController extends Component {
                     otchot3.setVisible(false);
                     otchot4.setVisible(false);
                     tableEmpty.setVisible(false);
+                    EGE.setVisible(false);
                     selectTimes.setItems(mounts);
 
                     try {
@@ -641,6 +644,7 @@ public class sampleController extends Component {
                     otchot3.setVisible(true);
                     otchot4.setVisible(false);
                     tableEmpty.setVisible(false);
+                    EGE.setVisible(false);
 
                     lab.setText("Год");
                     ObservableList<String> year = FXCollections.observableArrayList("1980");
@@ -673,6 +677,7 @@ public class sampleController extends Component {
                     otchot3.setVisible(false);
                     otchot4.setVisible(false);
                     tableEmpty.setVisible(false);
+                    EGE.setVisible(false);
                     lab.setText("Месяц");
                     selectTimes.setValue("Январь");
                     selectTimes.setItems(mounts);
@@ -917,14 +922,14 @@ public class sampleController extends Component {
             egeOtcots.get(egeOtcots.size() - 1).setAnglKat(((predmets.get(9).getCount4() + predmets.get(9).getCount5()) * 100) /
                     (predmets.get(9).getCount2() + predmets.get(9).getCount3() + predmets.get(9).getCount4() + predmets.get(9).getCount5()));
 
-            egeOtcots.get(egeOtcots.size() - 1).setXummi2(predmets.get(7).getCount2());
-            egeOtcots.get(egeOtcots.size() - 1).setXummi3(predmets.get(7).getCount3());
-            egeOtcots.get(egeOtcots.size() - 1).setXummi4(predmets.get(7).getCount4());
-            egeOtcots.get(egeOtcots.size() - 1).setXummi5(predmets.get(7).getCount5());
-            egeOtcots.get(egeOtcots.size() - 1).setXummiObs(predmets.get(7).getCount2() + predmets.get(7).getCount3() + predmets.get(7).getCount4() + predmets.get(7).getCount5());
-            egeOtcots.get(egeOtcots.size() - 1).setXummiYsp(((predmets.get(7).getCount3() + predmets.get(7).getCount4() + predmets.get(7).getCount5()) * 100) /
+            egeOtcots.get(egeOtcots.size() - 1).setHis2(predmets.get(7).getCount2());
+            egeOtcots.get(egeOtcots.size() - 1).setHis3(predmets.get(7).getCount3());
+            egeOtcots.get(egeOtcots.size() - 1).setHis4(predmets.get(7).getCount4());
+            egeOtcots.get(egeOtcots.size() - 1).setHis5(predmets.get(7).getCount5());
+            egeOtcots.get(egeOtcots.size() - 1).setHisObs(predmets.get(7).getCount2() + predmets.get(7).getCount3() + predmets.get(7).getCount4() + predmets.get(7).getCount5());
+            egeOtcots.get(egeOtcots.size() - 1).setHisYsp(((predmets.get(7).getCount3() + predmets.get(7).getCount4() + predmets.get(7).getCount5()) * 100) /
                     (predmets.get(7).getCount2() + predmets.get(7).getCount3() + predmets.get(7).getCount4() + predmets.get(7).getCount5()));
-            egeOtcots.get(egeOtcots.size() - 1).setXummiKat(((predmets.get(7).getCount4() + predmets.get(7).getCount5()) * 100) /
+            egeOtcots.get(egeOtcots.size() - 1).setHisKat(((predmets.get(7).getCount4() + predmets.get(7).getCount5()) * 100) /
                     (predmets.get(7).getCount2() + predmets.get(7).getCount3() + predmets.get(7).getCount4() + predmets.get(7).getCount5()));
 
             egeOtcots.get(egeOtcots.size() - 1).setObsestv2(predmets.get(10).getCount2());
